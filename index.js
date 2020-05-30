@@ -8,7 +8,7 @@ const glob = require("glob")
 const directoryPath = path.join(__dirname, "./src/components");
 
 let allData = [];
-
+const template = require('./templates.js');
 
 glob.sync(directoryPath + '/**/*.vue').forEach((file) => {
   allData.push(docgen.parse(file).then((res) => res));
@@ -17,7 +17,7 @@ glob.sync(directoryPath + '/**/*.vue').forEach((file) => {
 
 
 Promise.all(allData).then((res) => {
-  const folder = path.join(__dirname, 'test')
+  const folder = path.join(__dirname, 'vueJsdoc')
   fs.mkdir(folder,
     { recursive: true }, (err) => {
       if (err) {
@@ -31,34 +31,11 @@ Promise.all(allData).then((res) => {
 
         components.forEach((component) => {
 
-          const html = new htmlCreator([
-            {
-              type: 'head',
-              content: [{ type: 'title', content: component.displayName }]
-            },
-            {
-              type: 'body',
-              attributes: { style: 'padding: 1rem' },
-              content: [
-                {
-                  type: 'div',
-                  content: [
-                    {
-                      type: 'span',
-                      content: 'A Button Span Deluxe',
-                      attributes: { className: 'button' },
-                    },
-                    {
-                      type: 'a',
-                      content: 'Click here',
-                      attributes: { href: '/path-to-infinity', target: '_blank' },
-                    },
-                  ],
-                },
-              ],
-            },
-          ]);
-          fs.writeFile(`${folder}/${component.displayName}.html`, html.renderHTML(), function (err) {
+
+          fs.writeFile(`${folder}/${component.displayName}.html`, template.component.renderHTML(), function (err) {
+            if (err) throw err
+          })
+          fs.writeFile(`${folder}/style.css`, template.css, function (err) {
             if (err) throw err
           })
         })
