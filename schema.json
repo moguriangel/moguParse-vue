@@ -1,0 +1,104 @@
+[
+ {
+  "displayName": "FantasticoComponente",
+  "exportName": "default",
+  "description": "",
+  "tags": {},
+  "props": [
+   {
+    "name": "foo",
+    "description": "Defined in the component.",
+    "type": {
+     "name": "string"
+    }
+   }
+  ],
+  "methods": [
+   {
+    "name": "test",
+    "description": "test component",
+    "params": [
+     {
+      "name": "a",
+      "type": {
+       "name": "Number"
+      },
+      "description": "first number"
+     }
+    ],
+    "tags": {
+     "access": [
+      {
+       "description": "public",
+       "title": "access"
+      }
+     ],
+     "params": [
+      {
+       "title": "param",
+       "type": {
+        "name": "Number"
+       },
+       "name": "a",
+       "description": "first number"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "displayName": "poveroComponente",
+  "exportName": "default",
+  "description": "",
+  "tags": {},
+  "props": [
+   {
+    "name": "foo",
+    "description": "Defined in the component.",
+    "type": {
+     "name": "string"
+    }
+   }
+  ],
+  "methods": [
+   {
+    "name": "test1",
+    "description": "test comp2",
+    "params": [
+     {
+      "name": "a",
+      "type": {
+       "name": "Number"
+      },
+      "description": "first number"
+     }
+    ],
+    "tags": {
+     "access": [
+      {
+       "description": "public",
+       "title": "access"
+      }
+     ],
+     "see": [
+      {
+       "description": "goggle",
+       "title": "see"
+      }
+     ],
+     "params": [
+      {
+       "title": "param",
+       "type": {
+        "name": "Number"
+       },
+       "name": "a",
+       "description": "first number"
+      }
+     ]
+    }
+   }
+  ]
+ }
+]
