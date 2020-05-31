@@ -38,27 +38,30 @@ Promise.all(allParsedComponents).then(parsedComponents => {
   // We need to prepare sidebar menu here because it contains all components' links for navigation
   const prepareListTemplate = (currentComp) => {
     return parsedComponents.map(item => {
+
       const isActive = item.name === currentComp ? 'active' : ''
       return {
         type: 'li',
-        attributes: { className: "nav-item" },
-        content: {
-          type: 'a',
-          attributes: { href: `${item.name}.html`, className: `nav-link ${isActive}` }
-        }
+        attributes: { class: "nav-item" },
+        content: [
+          {
+            type: 'a',
+            attributes: { href: `${item.name}.html`, class: `nav-link ${isActive}` },
+            content: item.name
+          }
+        ]
       }
     })
   }
-
   // Create template html for each component
   parsedComponents.forEach((component) => {
-    const html = new htmlCreator(template.componentTemplate(component))
+    const html = new htmlCreator(template.componentTemplate(component, prepareListTemplate(component.name)))
 
-    html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
 
     fs.writeFile(`${folder}/${component.name}.html`, html.renderHTML(), function (err) {
       if (err) throw err
     })
+    // html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
 
     fs.writeFile(`${folder}/style.css`, template.css, function (err) {
       if (err) throw err

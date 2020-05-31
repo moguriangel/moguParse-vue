@@ -29,6 +29,7 @@ export default {
   methods: {
     /**
      * no tag desc
+     * @name uu
      * @param {Number} a param tag desc
      * @description desc tag desc
      * @see seeTag see tag desc
