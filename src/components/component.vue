@@ -3,25 +3,58 @@
 </template>
 
 <script>
+import mixin from "./mixin.js";
+
 export default {
-  name: "FantasticoComponente",
+  name: "myAwesomeComponent",
+  mixins: [mixin],
   props: {
     /**
-     * Defined in the component.
+     * props comment.
+     *
      */
     foo: {
       type: String
+    },
+    /**
+     * dummy prop
+     */
+    bar: {
+      type: Array,
+      required: false,
+      default: () => [],
+      validation: () => ({})
     }
   },
   methods: {
     /**
-     * @public
-     * test component
-     * @param {Number} a first number
+     * no tag desc
+     * @param {Number} a param tag desc
+     * @description desc tag desc
+     * @see seeTag see tag desc
+     * @public Sets the order
+     * @version 1.0.5 version tag desc
+     * @since since tag desc
+     * @returns {string} return tag desc
      */
     test(a) {
       return a + 2;
     }
+  },
+  computed: {
+    /**
+     * no tag desc
+     * @public Sets the order
+     *
+     * @param {Number} a param tag desc
+     * @description computed
+     */
+    computed1() {
+      return "sono una computed";
+    }
+  },
+  apollo: {
+    session: {}
   }
 };
 </script>

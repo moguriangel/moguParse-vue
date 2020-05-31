@@ -1,4 +1,5 @@
 export default {
+  /** @mixin */
   props: {
     /**
      * Defined in the mixin.
@@ -9,7 +10,8 @@ export default {
   },
   methods: {
     /**
-     * @description decrizione
+     * Mixin
+     * @description Mixin
      * @see qui
      * @public Sets the order
      * @version 1.0.5

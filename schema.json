@@ -1,36 +1,94 @@
 [
  {
-  "displayName": "FantasticoComponente",
   "exportName": "default",
+  "displayName": "myAwesomeComponent",
   "description": "",
   "tags": {},
   "props": [
    {
+    "name": "barr",
+    "mixin": {
+     "name": "mixin",
+     "path": "mixin.js"
+    },
+    "description": "Defined in the mixin.",
+    "type": {
+     "name": "number"
+    }
+   },
+   {
     "name": "foo",
-    "description": "Defined in the component.",
+    "description": "props comment.",
     "type": {
      "name": "string"
+    }
+   },
+   {
+    "name": "bar",
+    "description": "dummy prop",
+    "type": {
+     "name": "array"
+    },
+    "required": false,
+    "defaultValue": {
+     "func": false,
+     "value": "[]"
     }
    }
   ],
   "methods": [
    {
-    "name": "test",
-    "description": "test component",
+    "name": "testa",
+    "mixin": {
+     "name": "mixin",
+     "path": "mixin.js"
+    },
+    "description": "Mixin",
     "params": [
      {
       "name": "a",
       "type": {
        "name": "Number"
       },
-      "description": "first number"
+      "description": "Key to order"
      }
     ],
+    "returns": {
+     "title": "returns",
+     "type": {
+      "name": "string"
+     },
+     "description": "Test"
+    },
     "tags": {
+     "description": [
+      {
+       "description": "Mixin",
+       "title": "description"
+      }
+     ],
+     "see": [
+      {
+       "description": "qui",
+       "title": "see"
+      }
+     ],
      "access": [
       {
        "description": "public",
        "title": "access"
+      }
+     ],
+     "version": [
+      {
+       "description": "1.0.5",
+       "title": "version"
+      }
+     ],
+     "since": [
+      {
+       "description": "Version 1.0.1",
+       "title": "since"
       }
      ],
      "params": [
@@ -40,7 +98,175 @@
         "name": "Number"
        },
        "name": "a",
-       "description": "first number"
+       "description": "Key to order"
+      }
+     ],
+     "returns": [
+      {
+       "title": "returns",
+       "type": {
+        "name": "string"
+       },
+       "description": "Test"
+      }
+     ]
+    }
+   },
+   {
+    "name": "test",
+    "description": "no tag desc",
+    "params": [
+     {
+      "name": "a",
+      "type": {
+       "name": "Number"
+      },
+      "description": "param tag desc"
+     }
+    ],
+    "returns": {
+     "title": "returns",
+     "type": {
+      "name": "string"
+     },
+     "description": "return tag desc"
+    },
+    "tags": {
+     "params": [
+      {
+       "title": "param",
+       "type": {
+        "name": "Number"
+       },
+       "name": "a",
+       "description": "param tag desc"
+      }
+     ],
+     "description": [
+      {
+       "description": "desc tag desc",
+       "title": "description"
+      }
+     ],
+     "see": [
+      {
+       "description": "seeTag see tag desc",
+       "title": "see"
+      }
+     ],
+     "access": [
+      {
+       "description": "public",
+       "title": "access"
+      }
+     ],
+     "version": [
+      {
+       "description": "1.0.5 version tag desc",
+       "title": "version"
+      }
+     ],
+     "since": [
+      {
+       "description": "since tag desc",
+       "title": "since"
+      }
+     ],
+     "returns": [
+      {
+       "title": "returns",
+       "type": {
+        "name": "string"
+       },
+       "description": "return tag desc"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "exportName": "default",
+  "displayName": "mixin",
+  "description": "",
+  "tags": {},
+  "props": [
+   {
+    "name": "barr",
+    "description": "Defined in the mixin.",
+    "type": {
+     "name": "number"
+    }
+   }
+  ],
+  "methods": [
+   {
+    "name": "testa",
+    "description": "Mixin",
+    "params": [
+     {
+      "name": "a",
+      "type": {
+       "name": "Number"
+      },
+      "description": "Key to order"
+     }
+    ],
+    "returns": {
+     "title": "returns",
+     "type": {
+      "name": "string"
+     },
+     "description": "Test"
+    },
+    "tags": {
+     "description": [
+      {
+       "description": "Mixin",
+       "title": "description"
+      }
+     ],
+     "see": [
+      {
+       "description": "qui",
+       "title": "see"
+      }
+     ],
+     "access": [
+      {
+       "description": "public",
+       "title": "access"
+      }
+     ],
+     "version": [
+      {
+       "description": "1.0.5",
+       "title": "version"
+      }
+     ],
+     "since": [
+      {
+       "description": "Version 1.0.1",
+       "title": "since"
+      }
+     ],
+     "params": [
+      {
+       "title": "param",
+       "type": {
+        "name": "Number"
+       },
+       "name": "a",
+       "description": "Key to order"
+      }
+     ],
+     "returns": [
+      {
+       "title": "returns",
+       "type": {
+        "name": "string"
+       },
+       "description": "Test"
       }
      ]
     }
