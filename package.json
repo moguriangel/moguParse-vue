@@ -7,8 +7,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "html-creator": "^0.4.4",
-    "vue-docgen-api": "4.24.0"
+    "@vuedoc/parser": "^2.2.1",
+    "html-creator": "^0.4.4"
   },
   "devDependencies": {
     "nodemon": "1.18.4"

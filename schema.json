@@ -1,328 +1,220 @@
 [
  {
-  "exportName": "default",
-  "displayName": "myAwesomeComponent",
+  "inheritAttrs": true,
+  "errors": [],
+  "name": "myAwesomeComponent",
   "description": "",
-  "tags": {},
+  "keywords": [],
+  "slots": [],
   "props": [
    {
-    "name": "barr",
-    "mixin": {
-     "name": "mixin",
-     "path": "mixin.js"
-    },
-    "description": "Defined in the mixin.",
-    "type": {
-     "name": "number"
-    }
-   },
-   {
-    "name": "foo",
+    "kind": "prop",
+    "visibility": "public",
     "description": "props comment.",
-    "type": {
-     "name": "string"
-    }
+    "keywords": [],
+    "name": "foo",
+    "type": "String",
+    "nativeType": "string",
+    "default": "__undefined__",
+    "required": false,
+    "describeModel": false
    },
    {
-    "name": "bar",
+    "kind": "prop",
+    "visibility": "public",
     "description": "dummy prop",
-    "type": {
-     "name": "array"
-    },
+    "keywords": [],
+    "name": "bar",
+    "type": "Array",
+    "nativeType": "ArrowFunctionExpression",
+    "default": "() => []",
     "required": false,
-    "defaultValue": {
-     "func": false,
-     "value": "[]"
-    }
+    "describeModel": false
    }
   ],
-  "methods": [
+  "data": [],
+  "computed": [
    {
-    "name": "testa",
-    "mixin": {
-     "name": "mixin",
-     "path": "mixin.js"
-    },
-    "description": "Mixin",
-    "params": [
+    "kind": "computed",
+    "visibility": "public",
+    "description": "no tag desc",
+    "keywords": [
      {
-      "name": "a",
-      "type": {
-       "name": "Number"
-      },
-      "description": "Key to order"
+      "name": "public",
+      "description": "Sets the order"
+     },
+     {
+      "name": "param",
+      "description": "{Number} a param tag desc"
+     },
+     {
+      "name": "description",
+      "description": "computed"
      }
     ],
-    "returns": {
-     "title": "returns",
-     "type": {
-      "name": "string"
-     },
-     "description": "Test"
-    },
-    "tags": {
-     "description": [
-      {
-       "description": "Mixin",
-       "title": "description"
-      }
-     ],
-     "see": [
-      {
-       "description": "qui",
-       "title": "see"
-      }
-     ],
-     "access": [
-      {
-       "description": "public",
-       "title": "access"
-      }
-     ],
-     "version": [
-      {
-       "description": "1.0.5",
-       "title": "version"
-      }
-     ],
-     "since": [
-      {
-       "description": "Version 1.0.1",
-       "title": "since"
-      }
-     ],
-     "params": [
-      {
-       "title": "param",
-       "type": {
-        "name": "Number"
-       },
-       "name": "a",
-       "description": "Key to order"
-      }
-     ],
-     "returns": [
-      {
-       "title": "returns",
-       "type": {
-        "name": "string"
-       },
-       "description": "Test"
-      }
-     ]
-    }
-   },
+    "name": "computed1",
+    "dependencies": []
+   }
+  ],
+  "events": [],
+  "methods": [
    {
-    "name": "test",
+    "kind": "method",
+    "visibility": "public",
     "description": "no tag desc",
+    "keywords": [
+     {
+      "name": "description",
+      "description": "desc tag desc"
+     },
+     {
+      "name": "see",
+      "description": "seeTag see tag desc"
+     },
+     {
+      "name": "public",
+      "description": "Sets the order"
+     },
+     {
+      "name": "version",
+      "description": "1.0.5 version tag desc"
+     },
+     {
+      "name": "since",
+      "description": "since tag desc"
+     }
+    ],
+    "name": "test",
     "params": [
      {
+      "type": "Number",
       "name": "a",
-      "type": {
-       "name": "Number"
-      },
       "description": "param tag desc"
      }
     ],
-    "returns": {
-     "title": "returns",
-     "type": {
-      "name": "string"
-     },
+    "return": {
+     "type": "string",
      "description": "return tag desc"
-    },
-    "tags": {
-     "params": [
-      {
-       "title": "param",
-       "type": {
-        "name": "Number"
-       },
-       "name": "a",
-       "description": "param tag desc"
-      }
-     ],
-     "description": [
-      {
-       "description": "desc tag desc",
-       "title": "description"
-      }
-     ],
-     "see": [
-      {
-       "description": "seeTag see tag desc",
-       "title": "see"
-      }
-     ],
-     "access": [
-      {
-       "description": "public",
-       "title": "access"
-      }
-     ],
-     "version": [
-      {
-       "description": "1.0.5 version tag desc",
-       "title": "version"
-      }
-     ],
-     "since": [
-      {
-       "description": "since tag desc",
-       "title": "since"
-      }
-     ],
-     "returns": [
-      {
-       "title": "returns",
-       "type": {
-        "name": "string"
-       },
-       "description": "return tag desc"
-      }
-     ]
     }
    }
   ]
  },
  {
-  "exportName": "default",
-  "displayName": "mixin",
+  "inheritAttrs": true,
+  "errors": [],
+  "name": "mixin",
   "description": "",
-  "tags": {},
+  "keywords": [],
+  "slots": [],
   "props": [
    {
-    "name": "barr",
+    "kind": "prop",
+    "visibility": "public",
     "description": "Defined in the mixin.",
-    "type": {
-     "name": "number"
-    }
+    "keywords": [],
+    "name": "barr",
+    "type": "Number",
+    "nativeType": "number",
+    "default": "__undefined__",
+    "required": false,
+    "describeModel": false
    }
   ],
+  "data": [],
+  "computed": [],
+  "events": [],
   "methods": [
    {
-    "name": "testa",
+    "kind": "method",
+    "visibility": "public",
     "description": "Mixin",
+    "keywords": [
+     {
+      "name": "description",
+      "description": "Mixin"
+     },
+     {
+      "name": "see",
+      "description": "qui"
+     },
+     {
+      "name": "public",
+      "description": "Sets the order"
+     },
+     {
+      "name": "version",
+      "description": "1.0.5"
+     },
+     {
+      "name": "since",
+      "description": "Version 1.0.1"
+     }
+    ],
+    "name": "testa",
     "params": [
      {
+      "type": "Number",
       "name": "a",
-      "type": {
-       "name": "Number"
-      },
       "description": "Key to order"
      }
     ],
-    "returns": {
-     "title": "returns",
-     "type": {
-      "name": "string"
-     },
+    "return": {
+     "type": "string",
      "description": "Test"
-    },
-    "tags": {
-     "description": [
-      {
-       "description": "Mixin",
-       "title": "description"
-      }
-     ],
-     "see": [
-      {
-       "description": "qui",
-       "title": "see"
-      }
-     ],
-     "access": [
-      {
-       "description": "public",
-       "title": "access"
-      }
-     ],
-     "version": [
-      {
-       "description": "1.0.5",
-       "title": "version"
-      }
-     ],
-     "since": [
-      {
-       "description": "Version 1.0.1",
-       "title": "since"
-      }
-     ],
-     "params": [
-      {
-       "title": "param",
-       "type": {
-        "name": "Number"
-       },
-       "name": "a",
-       "description": "Key to order"
-      }
-     ],
-     "returns": [
-      {
-       "title": "returns",
-       "type": {
-        "name": "string"
-       },
-       "description": "Test"
-      }
-     ]
     }
    }
   ]
  },
  {
-  "displayName": "poveroComponente",
-  "exportName": "default",
+  "inheritAttrs": true,
+  "errors": [],
+  "name": "poveroComponente",
   "description": "",
-  "tags": {},
+  "keywords": [],
+  "slots": [],
   "props": [
    {
-    "name": "foo",
+    "kind": "prop",
+    "visibility": "public",
     "description": "Defined in the component.",
-    "type": {
-     "name": "string"
-    }
+    "keywords": [],
+    "name": "foo",
+    "type": "String",
+    "nativeType": "string",
+    "default": "__undefined__",
+    "required": false,
+    "describeModel": false
    }
   ],
+  "data": [],
+  "computed": [],
+  "events": [],
   "methods": [
    {
-    "name": "test1",
+    "kind": "method",
+    "visibility": "public",
     "description": "test comp2",
+    "keywords": [
+     {
+      "name": "public",
+      "description": ""
+     },
+     {
+      "name": "see",
+      "description": "goggle"
+     }
+    ],
+    "name": "test1",
     "params": [
      {
+      "type": "Number",
       "name": "a",
-      "type": {
-       "name": "Number"
-      },
       "description": "first number"
      }
     ],
-    "tags": {
-     "access": [
-      {
-       "description": "public",
-       "title": "access"
-      }
-     ],
-     "see": [
-      {
-       "description": "goggle",
-       "title": "see"
-      }
-     ],
-     "params": [
-      {
-       "title": "param",
-       "type": {
-        "name": "Number"
-       },
-       "name": "a",
-       "description": "first number"
-      }
-     ]
+    "return": {
+     "type": "void",
+     "description": ""
     }
    }
   ]
