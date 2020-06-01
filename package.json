@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "@vuedoc/parser": "^2.2.1",
-    "html-creator": "^0.4.4"
+    "html-creator": "^0.4.4",
+    "jsdoc-api": "^6.0.0",
+    "jsdoc-parse": "^5.0.0",
+    "pug": "^3.0.0",
+    "pug-cli": "^1.0.0-alpha6"
   },
   "devDependencies": {
     "nodemon": "1.18.4"

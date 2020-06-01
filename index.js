@@ -1,30 +1,89 @@
 const path = require("path")
 const fs = require("fs")
+
 const htmlCreator = require('html-creator')
 const glob = require("glob")
 
-const vuedoc = require("@vuedoc/parser");
+const vuedoc = require("@vuedoc/parser")
+const jsdocParse = require('jsdoc-parse')
+const jsdocApi = require('jsdoc-api')
+
+const pug = require('pug')
 
 
 // come gli passo un path che mi darà l'utente tramite settings della libreria?
-const directoryPath = path.join(__dirname, "./src/components")
+// --- variabili settabili dall'utente ---
+const directoryPath = './src/components'
+const excludedDirectories = './src/components/SVGs'
+// --------------------------------------
 
-let allParsedComponents = []
+let vueParsedFiles = []
+let mixinParsedFiles = []
+let scriptsParsedFiles = []
+
+let allParsedJs = []
 const template = require('./templates.js')
 
-glob.sync(directoryPath + '/**/*.{vue,js}')
-  .forEach((file) => {
-    const options = {
-      filename: file
-    }
-    allParsedComponents.push(
-      vuedoc
-        .parse(options)
-        .then((fileParsed) => fileParsed)
-        .catch(err => console.log('parse err', err)))
-  })
+const vueFiles = glob.sync(`${directoryPath}/**/*.vue`, {
+  ignore: `${excludedDirectories}/*`
+}
+)
+const scriptFiles = glob.sync(`${directoryPath}/**/*.js`, {
+  ignore: `${excludedDirectories}/*`
+}
+)
 
-Promise.all(allParsedComponents).then(parsedComponents => {
+// Parse all .vue files
+vueFiles.forEach((file) => {
+
+  vueParsedFiles.push(
+    vuedoc
+      .parse({ filename: file })
+      .then((fileParsed) => fileParsed)
+      .catch(err => console.log('parse err', err)))
+})
+
+// Parse all .js file and separate mixin from pure scripts
+scriptFiles.forEach((file) => {
+  const getJsdocData = jsdocApi.explainSync({ files: file })
+  if (getJsdocData[0].kind === 'mixin') {
+    return mixinParsedFiles.push(
+      vuedoc
+        .parse({ filename: file })
+        .then(fileParsed => fileParsed)
+        .catch(err => console.log('parse err', err))
+    )
+  }
+
+  scriptsParsedFiles.push(jsdocParse(getJsdocData))
+
+})
+
+console.log('yoo', scriptsParsedFiles)
+// Create folders
+const folderComponents = path.join(__dirname, 'vueJsdoc/components')
+fs.mkdir(folderComponents, { recursive: true }, (err) => {
+  if (err) throw err
+})
+const folderMixin = path.join(__dirname, 'vueJsdoc/mixin')
+fs.mkdir(folderMixin, { recursive: true }, (err) => {
+  if (err) throw err
+})
+const folderScripts = path.join(__dirname, 'vueJsdoc/scripts')
+fs.mkdir(folderScripts, { recursive: true }, (err) => {
+  if (err) throw err
+})
+
+
+
+
+
+
+
+
+
+
+Promise.all(vueParsedFiles).then(parsedComponents => {
   fs.writeFile(`schema.json`, JSON.stringify(parsedComponents, null, 1), function (err) {
     if (err) throw err
   })
@@ -53,72 +112,29 @@ Promise.all(allParsedComponents).then(parsedComponents => {
       }
     })
   }
-  // Create template html for each component
-  parsedComponents.forEach((component) => {
-    const html = new htmlCreator(template.componentTemplate(component, prepareListTemplate(component.name)))
 
-
-    fs.writeFile(`${folder}/${component.name}.html`, html.renderHTML(), function (err) {
-      if (err) throw err
-    })
-    // html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
-
-    fs.writeFile(`${folder}/style.css`, template.css, function (err) {
-      if (err) throw err
-    })
+  // generate css file
+  fs.writeFile(`${folder}/style.css`, template.css, function (err) {
+    if (err) throw err
   })
 
-})
+  const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/test.pug'))
+  const pugHtml = pugCompiledFunction({ name: 'CIAO' })
+
+  // fs.writeFile(`${folder}/testPug.html`, pugHtml, function (err) {
+  //   if (err) throw err
+  // })
+  // // Create template html for each component
+  // parsedComponents.forEach((component) => {
+  //   const html = new htmlCreator(template.componentTemplate(component, prepareListTemplate(component.name)))
 
 
+  //   fs.writeFile(`${folder}/${component.name}.html`, html.renderHTML(), function (err) {
+  //     if (err) throw err
+  //   })
+  //   // html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
 
 
-
-
-
-
-  // Promise.all(allData).then((res) => {
-
-    // console.log('BUU', res)
-    // Create a folder
-    // fs.mkdir(folder, { recursive: true }, (err) => {
-    //   if (err) throw err
-    //   fs.writeFile(`schema.json`, JSON.stringify(res, null, 1), function (err) {
-    //     if (err) throw err
-
-    //     let rawdata = fs.readFileSync('schema.json')
-    //     let components = JSON.parse(rawdata)
-
-
-    //     // We need to prepare sidebar menu here because it contains all components' links for navigation
-    //     const prepareListTemplate = (currentComp) => {
-    //       return components.map(item => {
-    //         const isActive = item.displayName === currentComp ? 'active' : ''
-    //         return {
-    //           type: 'li',
-    //           attributes: { className: "nav-item" },
-    //           content: {
-    //             type: 'a',
-    //             attributes: { href: `${item.displayName}.html`, className: `nav-link ${isActive}` }
-    //           }
-    //         }
-    //       })
-    //     }
-    //     components.forEach((component) => {
-    //       const html = new htmlCreator(template.componentTemplate(component))
-
-    //       html.document.findElementById('sideBarList').content = prepareListTemplate(component.displayName)
-
-    //       fs.writeFile(`${folder}/${component.displayName}.html`, html.renderHTML(), function (err) {
-    //         if (err) throw err
-    //       })
-
-    //       fs.writeFile(`${folder}/style.css`, template.css, function (err) {
-    //         if (err) throw err
-    //       })
-    //     })
-
-    //   })
-    // })
   // })
 
+})

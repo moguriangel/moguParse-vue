@@ -32,7 +32,26 @@
     "describeModel": false
    }
   ],
-  "data": [],
+  "data": [
+   {
+    "kind": "data",
+    "visibility": "public",
+    "description": "",
+    "keywords": [],
+    "name": "data1",
+    "type": "string",
+    "initial": "ciao"
+   },
+   {
+    "kind": "data",
+    "visibility": "public",
+    "description": "",
+    "keywords": [],
+    "name": "data2",
+    "type": "number",
+    "initial": 34
+   }
+  ],
   "computed": [
    {
     "kind": "computed",
@@ -106,72 +125,6 @@
  {
   "inheritAttrs": true,
   "errors": [],
-  "name": "mixin",
-  "description": "",
-  "keywords": [],
-  "slots": [],
-  "props": [
-   {
-    "kind": "prop",
-    "visibility": "public",
-    "description": "Defined in the mixin.",
-    "keywords": [],
-    "name": "barr",
-    "type": "Number",
-    "nativeType": "number",
-    "default": "__undefined__",
-    "required": false,
-    "describeModel": false
-   }
-  ],
-  "data": [],
-  "computed": [],
-  "events": [],
-  "methods": [
-   {
-    "kind": "method",
-    "visibility": "public",
-    "description": "Mixin",
-    "keywords": [
-     {
-      "name": "description",
-      "description": "Mixin"
-     },
-     {
-      "name": "see",
-      "description": "qui"
-     },
-     {
-      "name": "public",
-      "description": "Sets the order"
-     },
-     {
-      "name": "version",
-      "description": "1.0.5"
-     },
-     {
-      "name": "since",
-      "description": "Version 1.0.1"
-     }
-    ],
-    "name": "testa",
-    "params": [
-     {
-      "type": "Number",
-      "name": "a",
-      "description": "Key to order"
-     }
-    ],
-    "return": {
-     "type": "string",
-     "description": "Test"
-    }
-   }
-  ]
- },
- {
-  "inheritAttrs": true,
-  "errors": [],
   "name": "poveroComponente",
   "description": "",
   "keywords": [],
@@ -222,5 +175,18 @@
     }
    }
   ]
+ },
+ {
+  "inheritAttrs": true,
+  "errors": [],
+  "name": "temp2",
+  "description": "",
+  "keywords": [],
+  "slots": [],
+  "props": [],
+  "data": [],
+  "computed": [],
+  "events": [],
+  "methods": []
  }
 ]

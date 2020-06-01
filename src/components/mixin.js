@@ -1,5 +1,9 @@
+/** 
+ * @mixin
+ * @public
+ * @mioTag cicci
+ */
 export default {
-  /** @mixin */
   props: {
     /**
      * Defined in the mixin.

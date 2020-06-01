@@ -1,0 +1,150 @@
+doctype html
+| PASTE YOUR HTML CODE HERE
+head
+  meta(charset='UTF-8')
+  meta(content='width=device-width, initial-scale=1.0' name='viewport')
+  title vue-jsdoc-parse
+  link(crossorigin='anonymous' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' rel='stylesheet')
+  link(href='./style.css' rel='stylesheet')
+main.container-fluid.h-100.white-bg.primary-dark-text
+  .row.h-100
+    aside.col-3.primary-bg.white-text.pt-4
+      h2.mb-4 VUE JSDOC PARSE
+      ul.navbar-nav.mr-auto
+        li.nav-item.active
+          a.nav-link(href='#')
+            | Dashboard
+            span.sr-only (current)
+        li.nav-item
+          a.nav-link(href='#') Notifications
+        li.nav-item
+          a.nav-link(href='#') Profile
+        li.nav-item
+          a.nav-link(href='#') Switch account
+        li.nav-item.dropdown
+          a#dropdown01.nav-link.dropdown-toggle(aria-expanded='false' aria-haspopup='true' data-toggle='dropdown' href='https://example.com') Settings
+          .dropdown-menu(aria-labelledby='dropdown01')
+            a.dropdown-item(href='#') Action
+            a.dropdown-item(href='#') Another action
+            a.dropdown-item(href='#') Something else here
+    .col-9.white-bg
+      .container.mt-4
+        h3 Nome Componente
+        // PROPS
+        section
+          .pt-4
+            h4 Props
+            table.table.table-sm.table-striped
+              thead
+                tr
+                  th(scope='col') Name
+                  th(scope='col') Type
+                  th(scope='col') Required
+                  th(scope='col') Default
+                  th(scope='col') Description
+              tbody
+                tr
+                  th(scope='row') props.name
+                  td props.type
+                  td props.required
+                  td props.default
+                  td props.description
+                tr
+                  th(scope='row') props.name
+                  td props.type
+                  td props.required
+                  td props.default
+                  td props.description
+                tr
+                  th(scope='row') props.name
+                  td props.type
+                  td props.required
+                  td props.default
+                  td props.description
+        // METHODS
+        section
+          .pt-4
+            h4 Methods
+            h5.pt-2.primary-text name
+            .py-2
+              p Mixin go to {mixin.name.html}
+            hr
+            h5.pt-2.primary-text method.name
+            .py-2
+              p
+                | Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu nisi hendrerit pellentesque at nec quam.
+            .py-2
+              .font-weight-bold description
+              p
+                | {method.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id enim eget ligula pulvinar facilisis. Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu nisi hendrerit pellentesque at nec quam.
+            .font-weight-bold params
+            div
+              span {params.name}
+              span.primary-text {params.type}
+              p {params.description}
+            hr
+            h5.pt-2.primary-text name
+            .font-weight-bold params
+            div
+              span {params.name}
+              span.primary-text {params.type}
+              p {params.description}
+            .font-weight-bold return
+            div
+              span.primary-text {return.type}
+              p {keywords.returns.description}
+            // here all other keywords
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}
+        // COMPUTED
+        section
+          .pt-4
+            h4 Computed
+            h5.pt-2.primary-text name
+            .py-2
+              p Mixin go to {mixin.name.html}
+            hr
+            h5.pt-2.primary-text method.name
+            .py-2
+              p
+                | Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu nisi hendrerit pellentesque at nec quam.
+            .py-2
+              .font-weight-bold description
+              p
+                | {method.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id enim eget ligula pulvinar facilisis. Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu nisi hendrerit pellentesque at nec quam.
+            .font-weight-bold params
+            div
+              span {params.name}
+              span.primary-text {params.type}
+              p {params.description}
+            hr
+            h5.pt-2.primary-text name
+            .font-weight-bold params
+            div
+              span {params.name}
+              span.primary-text {params.type}
+              p {params.description}
+            .font-weight-bold return
+            div
+              span.primary-text {return.type}
+              p {keywords.returns.description}
+            // here all other keywords
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}
+            .font-weight-bold
+              | keywords.name
+            p {keywords.description}

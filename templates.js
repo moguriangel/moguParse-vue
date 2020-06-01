@@ -156,7 +156,19 @@ exports.componentTemplate = (comp, list) => {
                         {
                           type: 'section',
                           content: [
-                            {}
+                            {
+                              type: 'div',
+                              attributes: { class: 'pt-4' },
+                              content: [
+                                {
+                                  type: 'h4',
+                                  content: 'Methods'
+                                },
+                                {
+
+                                }
+                              ]
+                            }
                           ]
                         },
                         {

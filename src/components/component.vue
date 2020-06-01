@@ -26,6 +26,12 @@ export default {
       validation: () => ({})
     }
   },
+  data() {
+    return {
+      data1: "ciao",
+      data2: 34
+    };
+  },
   methods: {
     /**
      * no tag desc
