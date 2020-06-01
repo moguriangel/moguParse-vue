@@ -32,9 +32,27 @@ const scriptFiles = glob.sync(`${directoryPath}/**/*.js`, {
   ignore: `${excludedDirectories}/*`
 }
 )
-
+const basenameFiles = {
+  components: {
+    path: [],
+    name: [],
+  },
+  mixin: {
+    path: [],
+    name: [],
+  },
+  scripts: {
+    path: [],
+    name: [],
+  },
+}
 // Parse all .vue files
 vueFiles.forEach((file) => {
+
+  const basename = path.basename(file)
+  const baseNoExt = basename.replace(path.extname(file), '')
+  basenameFiles.components.path.push(`components/${basename}`)
+  basenameFiles.components.name.push(baseNoExt)
 
   vueParsedFiles.push(
     vuedoc
@@ -46,7 +64,15 @@ vueFiles.forEach((file) => {
 // Parse all .js file and separate mixin from pure scripts
 scriptFiles.forEach((file) => {
   const getJsdocData = jsdocApi.explainSync({ files: file })
+
+  const basename = path.basename(file)
+  const baseNoExt = basename.replace(path.extname(file), '')
+
   if (getJsdocData[0].kind === 'mixin') {
+
+    basenameFiles.mixin.path.push(`mixin/${basename}`)
+    basenameFiles.mixin.name.push(baseNoExt)
+
     return mixinParsedFiles.push(
       vuedoc
         .parse({ filename: file })
@@ -55,11 +81,14 @@ scriptFiles.forEach((file) => {
     )
   }
 
+  basenameFiles.scripts.path.push(`scripts/${basename}`)
+  basenameFiles.scripts.name.push(baseNoExt)
+
   scriptsParsedFiles.push(jsdocParse(getJsdocData))
 
 })
+console.log('BASE', basenameFiles)
 
-console.log('yoo', scriptsParsedFiles)
 // Create folders
 const folderComponents = path.join(__dirname, 'vueJsdoc/components')
 fs.mkdir(folderComponents, { recursive: true }, (err) => {
@@ -80,61 +109,65 @@ fs.mkdir(folderScripts, { recursive: true }, (err) => {
 
 
 
-
-
-
-Promise.all(vueParsedFiles).then(parsedComponents => {
-  fs.writeFile(`schema.json`, JSON.stringify(parsedComponents, null, 1), function (err) {
+Promise.all(vueParsedFiles).then((val) => {
+  fs.writeFile(`schema.json`, JSON.stringify(val, null, 1), function (err) {
     if (err) throw err
   })
-
-  // Create a folder
-  const folder = path.join(__dirname, 'vueJsdoc')
-  fs.mkdir(folder, { recursive: true }, (err) => {
-    if (err) throw err
-  })
-
-  // We need to prepare sidebar menu here because it contains all components' links for navigation
-  const prepareListTemplate = (currentComp) => {
-    return parsedComponents.map(item => {
-
-      const isActive = item.name === currentComp ? 'active' : ''
-      return {
-        type: 'li',
-        attributes: { class: "nav-item" },
-        content: [
-          {
-            type: 'a',
-            attributes: { href: `${item.name}.html`, class: `nav-link ${isActive}` },
-            content: item.name
-          }
-        ]
-      }
-    })
-  }
-
-  // generate css file
-  fs.writeFile(`${folder}/style.css`, template.css, function (err) {
-    if (err) throw err
-  })
-
-  const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/test.pug'))
-  const pugHtml = pugCompiledFunction({ name: 'CIAO' })
-
-  // fs.writeFile(`${folder}/testPug.html`, pugHtml, function (err) {
-  //   if (err) throw err
-  // })
-  // // Create template html for each component
-  // parsedComponents.forEach((component) => {
-  //   const html = new htmlCreator(template.componentTemplate(component, prepareListTemplate(component.name)))
-
-
-  //   fs.writeFile(`${folder}/${component.name}.html`, html.renderHTML(), function (err) {
-  //     if (err) throw err
-  //   })
-  //   // html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
-
-
-  // })
-
 })
+
+
+// Promise.all(vueParsedFiles).then(parsedComponents => {
+//   fs.writeFile(`schema.json`, JSON.stringify(parsedComponents, null, 1), function (err) {
+//     if (err) throw err
+//   })
+
+//   // Create a folder
+//   const folder = path.join(__dirname, 'vueJsdoc')
+//   fs.mkdir(folder, { recursive: true }, (err) => {
+//     if (err) throw err
+//   })
+
+//   // We need to prepare sidebar menu here because it contains all components' links for navigation
+//   const prepareListTemplate = (currentComp) => {
+//     return parsedComponents.map(item => {
+
+//       const isActive = item.name === currentComp ? 'active' : ''
+//       return {
+//         type: 'li',
+//         attributes: { class: "nav-item" },
+//         content: [
+//           {
+//             type: 'a',
+//             attributes: { href: `/components/${item.name}.html`, class: `nav-link ${isActive}` },
+//             content: item.name
+//           }
+//         ]
+//       }
+//     })
+//   }
+
+//   // generate css file
+//   fs.writeFile(`${folder}/style.css`, template.css, function (err) {
+//     if (err) throw err
+//   })
+
+//   const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/test.pug'))
+//   const pugHtml = pugCompiledFunction({ name: 'CIAO' })
+
+//   // fs.writeFile(`${folder}/testPug.html`, pugHtml, function (err) {
+//   //   if (err) throw err
+//   // })
+//   // // Create template html for each component
+//   // parsedComponents.forEach((component) => {
+//   //   const html = new htmlCreator(template.componentTemplate(component, prepareListTemplate(component.name)))
+
+
+//   //   fs.writeFile(`${folder}/${component.name}.html`, html.renderHTML(), function (err) {
+//   //     if (err) throw err
+//   //   })
+//   //   // html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
+
+
+//   // })
+
+// })
