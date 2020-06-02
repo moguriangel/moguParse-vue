@@ -1,278 +1,106 @@
 [
- {
-  "inheritAttrs": true,
-  "errors": [],
-  "name": "myAwesomeComponent",
-  "description": "",
-  "keywords": [],
-  "slots": [],
-  "props": [
-   {
-    "kind": "prop",
-    "visibility": "public",
-    "description": "props comment awesome.",
-    "keywords": [],
-    "name": "foo",
-    "type": "String",
-    "nativeType": "string",
-    "default": "__undefined__",
-    "required": false,
-    "describeModel": false
+ [
+  {
+   "id": "cicci",
+   "longname": "cicci",
+   "name": "cicci",
+   "kind": "constant",
+   "scope": "global",
+   "description": "desc arry",
+   "params": [],
+   "meta": {
+    "lineno": 8,
+    "filename": "utils.js",
+    "path": "/Users/daniela/Mogu/vue-jsdoc-parse/src/components"
    },
-   {
-    "kind": "prop",
-    "visibility": "public",
-    "description": "dummy prop",
-    "keywords": [],
-    "name": "bar",
-    "type": "Array",
-    "nativeType": "ArrowFunctionExpression",
-    "default": "() => []",
-    "required": false,
-    "describeModel": false
-   }
-  ],
-  "data": [
-   {
-    "kind": "data",
-    "visibility": "public",
-    "description": "",
-    "keywords": [],
-    "name": "data1",
-    "type": "string",
-    "initial": "ciao"
+   "order": 0
+  },
+  {
+   "id": "funcMia",
+   "longname": "funcMia",
+   "name": "funcMia",
+   "kind": "function",
+   "scope": "global",
+   "description": "desc func",
+   "params": [
+    {
+     "type": {
+      "names": [
+       "String"
+      ]
+     },
+     "description": "param",
+     "name": "text"
+    },
+    {
+     "type": {
+      "names": [
+       "String",
+       "Number"
+      ]
+     },
+     "description": "param",
+     "name": "text"
+    }
+   ],
+   "returns": [
+    {
+     "type": {
+      "names": [
+       "String"
+      ]
+     },
+     "description": "return func"
+    }
+   ],
+   "meta": {
+    "lineno": 16,
+    "filename": "utils.js",
+    "path": "/Users/daniela/Mogu/vue-jsdoc-parse/src/components"
    },
-   {
-    "kind": "data",
-    "visibility": "public",
-    "description": "",
-    "keywords": [],
-    "name": "data2",
-    "type": "number",
-    "initial": 34
-   }
-  ],
-  "computed": [
-   {
-    "kind": "computed",
-    "visibility": "public",
-    "description": "no tag desc",
-    "keywords": [
-     {
-      "name": "public",
-      "description": "Sets the order"
-     },
-     {
-      "name": "param",
-      "description": "{Number} a param tag desc"
-     },
-     {
-      "name": "description",
-      "description": "computed"
-     }
-    ],
-    "name": "computed1",
-    "dependencies": []
-   }
-  ],
-  "events": [],
-  "methods": [
-   {
-    "kind": "method",
-    "visibility": "public",
-    "description": "no tag desc",
-    "keywords": [
-     {
-      "name": "name",
-      "description": "uu"
-     },
-     {
-      "name": "description",
-      "description": "desc tag desc"
-     },
-     {
-      "name": "see",
-      "description": "seeTag see tag desc"
-     },
-     {
-      "name": "public",
-      "description": "Sets the order"
-     },
-     {
-      "name": "version",
-      "description": "1.0.5 version tag desc"
-     },
-     {
-      "name": "since",
-      "description": "since tag desc"
-     }
-    ],
-    "name": "test",
-    "params": [
-     {
-      "type": "Number",
-      "name": "a",
-      "description": "param tag desc"
-     }
-    ],
-    "return": {
-     "type": "string",
-     "description": "return tag desc"
-    }
+   "order": 1
+  }
+ ],
+ [
+  {
+   "id": "arry",
+   "longname": "arry",
+   "name": "arry",
+   "kind": "constant",
+   "scope": "global",
+   "description": "desc arry",
+   "params": [],
+   "meta": {
+    "lineno": 8,
+    "filename": "utils2.js",
+    "path": "/Users/daniela/Mogu/vue-jsdoc-parse/src/components"
    },
-   {
-    "kind": "method",
-    "visibility": "public",
-    "description": "no tag desc",
-    "keywords": [
-     {
-      "name": "name",
-      "description": "uu"
+   "order": 0
+  },
+  {
+   "id": "func",
+   "longname": "func",
+   "name": "func",
+   "kind": "function",
+   "scope": "global",
+   "description": "desc func",
+   "params": [],
+   "returns": [
+    {
+     "type": {
+      "names": [
+       "String"
+      ]
      },
-     {
-      "name": "description",
-      "description": "desc tag desc"
-     },
-     {
-      "name": "see",
-      "description": "seeTag see tag desc"
-     },
-     {
-      "name": "public",
-      "description": "Sets the order"
-     },
-     {
-      "name": "version",
-      "description": "1.0.5 version tag desc"
-     },
-     {
-      "name": "since",
-      "description": "since tag desc"
-     }
-    ],
-    "name": "testA",
-    "params": [
-     {
-      "type": "Number",
-      "name": "a",
-      "description": "param tag desc"
-     }
-    ],
-    "return": {
-     "type": "string",
-     "description": "return tag desc"
+     "description": "return func"
     }
+   ],
+   "meta": {
+    "lineno": 14,
+    "filename": "utils2.js",
+    "path": "/Users/daniela/Mogu/vue-jsdoc-parse/src/components"
    },
-   {
-    "kind": "method",
-    "visibility": "public",
-    "description": "no tag desc",
-    "keywords": [
-     {
-      "name": "name",
-      "description": "uu"
-     },
-     {
-      "name": "description",
-      "description": "desc tag desc"
-     },
-     {
-      "name": "see",
-      "description": "seeTag see tag desc"
-     },
-     {
-      "name": "public",
-      "description": "Sets the order"
-     },
-     {
-      "name": "version",
-      "description": "1.0.5 version tag desc"
-     },
-     {
-      "name": "since",
-      "description": "since tag desc"
-     }
-    ],
-    "name": "testB",
-    "params": [
-     {
-      "type": "Number",
-      "name": "a",
-      "description": "param tag desc"
-     }
-    ],
-    "return": {
-     "type": "string",
-     "description": "return tag desc"
-    }
-   }
-  ]
- },
- {
-  "inheritAttrs": true,
-  "errors": [],
-  "name": "poveroComponente",
-  "description": "",
-  "keywords": [],
-  "slots": [],
-  "props": [
-   {
-    "kind": "prop",
-    "visibility": "public",
-    "description": "Defined in the component.",
-    "keywords": [],
-    "name": "foo",
-    "type": "String",
-    "nativeType": "string",
-    "default": "__undefined__",
-    "required": false,
-    "describeModel": false
-   }
-  ],
-  "data": [],
-  "computed": [],
-  "events": [],
-  "methods": [
-   {
-    "kind": "method",
-    "visibility": "public",
-    "description": "test comp2",
-    "keywords": [
-     {
-      "name": "public",
-      "description": ""
-     },
-     {
-      "name": "see",
-      "description": "goggle"
-     }
-    ],
-    "name": "test1",
-    "params": [
-     {
-      "type": "Number",
-      "name": "a",
-      "description": "first number"
-     }
-    ],
-    "return": {
-     "type": "void",
-     "description": ""
-    }
-   }
-  ]
- },
- {
-  "inheritAttrs": true,
-  "errors": [],
-  "name": "temp2",
-  "description": "",
-  "keywords": [],
-  "slots": [],
-  "props": [],
-  "data": [],
-  "computed": [],
-  "events": [],
-  "methods": []
- }
+   "order": 1
+  }
+ ]
 ]

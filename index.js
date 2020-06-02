@@ -69,7 +69,7 @@ scriptFiles.forEach((file) => {
   }
   const basename = path.basename(file)
   const baseNoExt = basename.replace(path.extname(file), '')
-  sidebarListFile.scripts.push({ name: baseNoExt, path: `scripts/${basename}.html` })
+  sidebarListFile.scripts.push({ name: baseNoExt, path: `scripts/${baseNoExt}.html` })
 
   scriptsParsedFiles.push(jsdocParse(getJsdocData))
 
@@ -100,13 +100,8 @@ fs.writeFile('vueJsdoc/style.css', style.css, function (err) {
 
 
 
-
+// Componets
 Promise.all(vueParsedFiles).then((parsedComponents) => {
-
-  fs.writeFile(`schema.json`, JSON.stringify(parsedComponents, null, 1), function (err) {
-    if (err) throw err
-  })
-
 
   parsedComponents.forEach((component) => {
 
@@ -120,60 +115,43 @@ Promise.all(vueParsedFiles).then((parsedComponents) => {
     })
   })
 })
+// Mixin
+Promise.all(mixinParsedFiles).then((parsedComponents) => {
+
+  parsedComponents.forEach((component) => {
+
+    const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
+    const pugHtml = pugCompiledFunction({ component, sidebarListFile })
+
+    const folder = path.join(__dirname, 'vueJsdoc/mixin')
+
+    fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
+      if (err) throw err
+    })
+  })
+})
+
+// Scripts
+Promise.all(scriptsParsedFiles).then((parsedScripts) => {
+
+  fs.writeFile(`schema.json`, JSON.stringify(parsedScripts, null, 1), function (err) {
+    if (err) throw err
+  })
 
 
-// Promise.all(vueParsedFiles).then(parsedComponents => {
-//   fs.writeFile(`schema.json`, JSON.stringify(parsedComponents, null, 1), function (err) {
-//     if (err) throw err
-//   })
+  parsedScripts.forEach((script) => {
+    const basename = script[0].meta.filename
+    const baseNoExt = basename.replace(path.extname(basename), '')
 
-//   // Create a folder
-//   const folder = path.join(__dirname, 'vueJsdoc')
-//   fs.mkdir(folder, { recursive: true }, (err) => {
-//     if (err) throw err
-//   })
-
-//   // We need to prepare sidebar menu here because it contains all components' links for navigation
-//   const prepareListTemplate = (currentComp) => {
-//     return parsedComponents.map(item => {
-
-//       const isActive = item.name === currentComp ? 'active' : ''
-//       return {
-//         type: 'li',
-//         attributes: { class: "nav-item" },
-//         content: [
-//           {
-//             type: 'a',
-//             attributes: { href: `/components/${item.name}.html`, class: `nav-link ${isActive}` },
-//             content: item.name
-//           }
-//         ]
-//       }
-//     })
-//   }
-
-//   // generate css file
-//   fs.writeFile(`${folder}/style.css`, template.css, function (err) {
-//     if (err) throw err
-//   })
-
-//   const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/test.pug'))
-//   const pugHtml = pugCompiledFunction({ name: 'CIAO' })
-
-//   // fs.writeFile(`${folder}/testPug.html`, pugHtml, function (err) {
-//   //   if (err) throw err
-//   // })
-//   // // Create template html for each component
-//   // parsedComponents.forEach((component) => {
-//   //   const html = new htmlCreator(template.componentTemplate(component, prepareListTemplate(component.name)))
+    const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/scripts.pug'))
+    const pugHtml = pugCompiledFunction({ script, sidebarListFile, baseNoExt })
 
 
-//   //   fs.writeFile(`${folder}/${component.name}.html`, html.renderHTML(), function (err) {
-//   //     if (err) throw err
-//   //   })
-//   //   // html.document.findElementById('sideBarList').content = prepareListTemplate(component.name)
+    const folder = path.join(__dirname, 'vueJsdoc/scripts')
 
+    fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
+      if (err) throw err
+    })
+  })
+})
 
-//   // })
-
-// })

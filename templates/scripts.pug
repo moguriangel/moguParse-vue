@@ -15,40 +15,38 @@ nav#sidebar
   button#sidebarCollapse.navbar-btn(type='button')
     i#icon.fa.fa-chevron-left
   h3.my-4.pl-2 VUE JSDOC PARSE
-  -var fileName = component.name
+  -var fileName = baseNoExt
     include includes/sidebar.pug
 .wrapper
   #content.primary-dark-text
     .container.mt-4
-      h3 Nome Componente
-      // PROPS
-      if component.props.length
-        section
-          .pt-4
-            h4 Props
-            include includes/propsTable.pug
-      // DATA
-      if component.data.length
-        section
-          .pt-4
-            h4 Data
-            include includes/dataTable.pug
-      // METHODS
-      if component.methods.length
-        section
-          .pt-4
-            a.dropdown-toggle.section-toggle.text-capitalize.h4(href='#methodsCollapse', data-toggle='collapse', aria-expanded='false') methods
-            #methodsCollapse.collapse
-              - const type = component.methods
-                include includes/sections.pug
-      // COMPUTED
-      if component.computed.length
-        section
-          .pt-4
-            a.dropdown-toggle.section-toggle.text-capitalize.h4(href='#computedCollapse', data-toggle='collapse', aria-expanded='false') computed
-            #computedCollapse.collapse
-              - const type = component.computed
-                include includes/sections.pug
+      h3=script[0].meta.filename
+        each item in script
+          h5.pt-2.primary-tex
+            | #{item.name}
+          .py-2
+            p Kind: #{item.kind}
+          if item.params.length
+            div @params
+              each param in item.params
+                div
+                  span
+                    | #{param.name} 
+                    each name in param.type.names
+                      span.primary-text {#{name}} |
+                  p=param.description 
+
+          if item.returns
+            div @return
+            each singleReturn in item.returns
+              div
+                span
+                  | #{singleReturn.name}
+                each name in singleReturn.type.names
+                  span.primary-text {#{name}} |
+                p=singleReturn.description          
+          hr
+      
 // jQuery CDN - Slim version (=without AJAX)
 script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
 // Bootstrap JS

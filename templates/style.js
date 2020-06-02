@@ -99,7 +99,7 @@ a, a:hover, a:focus {
   color: #F6F6F2;
   padding: 10px;
 }
-a.dropdown-toggle {
+a.section-toggle {
   display: block;
   padding: 10px 8px;
   background: #C2EDCE;
