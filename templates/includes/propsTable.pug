@@ -1,0 +1,18 @@
+.table-responsive
+  
+  table.table.table-sm.table-striped
+    thead
+      tr
+        th(scope='col') Name
+        th(scope='col') Type
+        th(scope='col') Required
+        th(scope='col') Default
+        th(scope='col') Description
+    tbody
+      each prop in component.props
+        tr
+          th(scope='row')=prop.name
+          td=prop.type
+          td=prop.required
+          td=prop.default
+          td=prop.description

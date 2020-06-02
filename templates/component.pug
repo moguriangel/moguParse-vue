@@ -1,0 +1,141 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  title comp.name
+  // Bootstrap CSS CDN
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+  // Our Custom CSS
+  link(rel='stylesheet', href='../style.css')
+  // Font Awesome JS
+  script(defer='', src='https://use.fontawesome.com/releases/v5.0.13/js/solid.js', integrity='sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ', crossorigin='anonymous')
+  script(defer='', src='https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js', integrity='sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY', crossorigin='anonymous')
+nav#sidebar
+  button#sidebarCollapse.navbar-btn(type='button')
+    i#icon.fa.fa-chevron-left
+  h3.my-4.pl-2 VUE JSDOC PARSE
+  include includes/sidebar.pug
+.wrapper
+  #content.primary-dark-text
+    .container.mt-4
+      h3 Nome Componente
+      // PROPS
+      section
+        .pt-4
+          h4 Props
+          include includes/propsTable.pug
+      // METHODS
+      section
+        .pt-4
+          h4 Methods
+          h5.pt-2.primary-text name
+          .py-2
+            p Mixin go to {mixin.name.html}
+          hr
+          h5.pt-2.primary-text method.name
+          .py-2
+            p
+              | Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu
+              | nisi hendrerit
+              | pellentesque at nec quam.
+          .py-2
+            .font-weight-bold description
+            p
+              | {method.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id enim
+              | eget ligula
+              | pulvinar facilisis. Donec ullamcorper convallis ex, in eleifend massa luctus quis. In
+              | sollicitudin quam
+              | eu nisi hendrerit pellentesque at nec quam.
+          .font-weight-bold params
+          div
+            span {params.name}
+            span.primary-text {params.type}
+            p {params.description}
+          hr
+          h5.pt-2.primary-text name
+          .font-weight-bold params
+          div
+            span {params.name}
+            span.primary-text {params.type}
+            p {params.description}
+          .font-weight-bold return
+          div
+            span.primary-text {return.type}
+            p {keywords.returns.description}
+          // here all other keywords
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+      // COMPUTED
+      section
+        .pt-4
+          h4 Computed
+          h5.pt-2.primary-text name
+          .py-2
+            p Mixin go to {mixin.name.html}
+          hr
+          h5.pt-2.primary-text method.name
+          .py-2
+            p
+              | Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu
+              | nisi hendrerit
+              | pellentesque at nec quam.
+          .py-2
+            .font-weight-bold description
+            p
+              | {method.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id enim
+              | eget ligula
+              | pulvinar facilisis. Donec ullamcorper convallis ex, in eleifend massa luctus quis. In
+              | sollicitudin quam
+              | eu nisi hendrerit pellentesque at nec quam.
+          .font-weight-bold params
+          div
+            span {params.name}
+            span.primary-text {params.type}
+            p {params.description}
+          hr
+          h5.pt-2.primary-text name
+          .font-weight-bold params
+          div
+            span {params.name}
+            span.primary-text {params.type}
+            p {params.description}
+          .font-weight-bold return
+          div
+            span.primary-text {return.type}
+            p {keywords.returns.description}
+          // here all other keywords
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+          .font-weight-bold
+            | keywords.name
+          p {keywords.description}
+// jQuery CDN - Slim version (=without AJAX)
+script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+// Bootstrap JS
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+script(type='text/javascript').
+  $(document).ready(function () {
+  $('#sidebarCollapse').on('click', function () {
+  $('#sidebar').toggleClass('active');
+  $('#content').toggleClass('active');
+  $(this).toggleClass('active');
+  });
+  });

@@ -9,6 +9,7 @@ const jsdocParse = require('jsdoc-parse')
 const jsdocApi = require('jsdoc-api')
 
 const pug = require('pug')
+const { NameEntry } = require('@vuedoc/parser/lib/entity/NameEntry')
 
 
 // come gli passo un path che mi darà l'utente tramite settings della libreria?
@@ -22,7 +23,6 @@ let mixinParsedFiles = []
 let scriptsParsedFiles = []
 
 let allParsedJs = []
-const template = require('./templates.js')
 
 const vueFiles = glob.sync(`${directoryPath}/**/*.vue`, {
   ignore: `${excludedDirectories}/*`
@@ -32,32 +32,22 @@ const scriptFiles = glob.sync(`${directoryPath}/**/*.js`, {
   ignore: `${excludedDirectories}/*`
 }
 )
-const basenameFiles = {
-  components: {
-    path: [],
-    name: [],
-  },
-  mixin: {
-    path: [],
-    name: [],
-  },
-  scripts: {
-    path: [],
-    name: [],
-  },
+const sidebarListFile = {
+  components: [],
+  mixin: [],
+  scripts: [],
 }
+
 // Parse all .vue files
 vueFiles.forEach((file) => {
-
-  const basename = path.basename(file)
-  const baseNoExt = basename.replace(path.extname(file), '')
-  basenameFiles.components.path.push(`components/${basename}`)
-  basenameFiles.components.name.push(baseNoExt)
 
   vueParsedFiles.push(
     vuedoc
       .parse({ filename: file })
-      .then((fileParsed) => fileParsed)
+      .then((fileParsed) => {
+        sidebarListFile.components.push({ name: fileParsed.name, path: `components/${fileParsed.name}.html` })
+        return fileParsed
+      })
       .catch(err => console.log('parse err', err)))
 })
 
@@ -65,29 +55,26 @@ vueFiles.forEach((file) => {
 scriptFiles.forEach((file) => {
   const getJsdocData = jsdocApi.explainSync({ files: file })
 
-  const basename = path.basename(file)
-  const baseNoExt = basename.replace(path.extname(file), '')
-
   if (getJsdocData[0].kind === 'mixin') {
-
-    basenameFiles.mixin.path.push(`mixin/${basename}`)
-    basenameFiles.mixin.name.push(baseNoExt)
 
     return mixinParsedFiles.push(
       vuedoc
         .parse({ filename: file })
-        .then(fileParsed => fileParsed)
+        .then(fileParsed => {
+          sidebarListFile.mixin.push({ name: fileParsed.name, path: `mixin/${fileParsed.name}.html` })
+          return fileParsed
+        })
         .catch(err => console.log('parse err', err))
     )
   }
-
-  basenameFiles.scripts.path.push(`scripts/${basename}`)
-  basenameFiles.scripts.name.push(baseNoExt)
+  const basename = path.basename(file)
+  const baseNoExt = basename.replace(path.extname(file), '')
+  sidebarListFile.scripts.push({ name: baseNoExt, path: `scripts/${basename}.html` })
 
   scriptsParsedFiles.push(jsdocParse(getJsdocData))
 
 })
-console.log('BASE', basenameFiles)
+
 
 // Create folders
 const folderComponents = path.join(__dirname, 'vueJsdoc/components')
@@ -104,14 +91,33 @@ fs.mkdir(folderScripts, { recursive: true }, (err) => {
 })
 
 
+//generate css file
+const style = require('./templates/style.js')
+
+fs.writeFile('vueJsdoc/style.css', style.css, function (err) {
+  if (err) throw err
+})
 
 
 
 
+Promise.all(vueParsedFiles).then((parsedComponents) => {
 
-Promise.all(vueParsedFiles).then((val) => {
-  fs.writeFile(`schema.json`, JSON.stringify(val, null, 1), function (err) {
+  fs.writeFile(`schema.json`, JSON.stringify(parsedComponents, null, 1), function (err) {
     if (err) throw err
+  })
+
+
+  parsedComponents.forEach((component) => {
+
+    const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
+    const pugHtml = pugCompiledFunction({ component, sidebarListFile })
+
+    const folder = path.join(__dirname, 'vueJsdoc/components')
+
+    fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
+      if (err) throw err
+    })
   })
 })
 

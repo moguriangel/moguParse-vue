@@ -10,7 +10,7 @@ export default {
   mixins: [mixin],
   props: {
     /**
-     * props comment.
+     * props comment awesome.
      *
      */
     foo: {

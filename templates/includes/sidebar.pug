@@ -1,0 +1,13 @@
+ul.list-unstyled.components
+  each type, key in sidebarListFile
+    - var someActive = sidebarListFile[key].some(item => item.name === component.name)
+
+    li(class=someActive ? 'active' : '')
+      a.dropdown-toggle.text-capitalize(href=`#${key}Submenu`, data-toggle='collapse', aria-expanded='true')
+        | #{key}
+      ul.collapse.list-unstyled(id=`${key}Submenu` class=someActive ? 'show' : '')
+        each link in type
+          li.ml-2
+            a(href='../' + link.path class=link.name === component.name ? 'active' : '')
+              | #{link.name}
+        

@@ -10,7 +10,7 @@
    {
     "kind": "prop",
     "visibility": "public",
-    "description": "props comment.",
+    "description": "props comment awesome.",
     "keywords": [],
     "name": "foo",
     "type": "String",
