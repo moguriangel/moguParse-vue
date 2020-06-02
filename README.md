@@ -1,4 +1,6 @@
 # vue-jsdoc-parse
 
-Creates a folder with all html and css
+Parse JSDOC for documentation export.
+It generate html files
+It detect if files .js are mixins
 `yarn start`
