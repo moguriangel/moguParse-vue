@@ -1,0 +1,24 @@
+each item in type
+  h5.pt-2.primary-tex
+   | #{item.name}
+  .py-2
+    p=item.description
+  if item.params
+    div @params
+      each param in item.params
+        div
+          span
+            | #{param.name}  
+          span.primary-text {#{param.type}}
+          p param.description 
+  if item.return
+    div @return
+    div
+      span.primary-text=item.return.type
+      p=item.return.description
+  each keyword in item.keywords
+    div
+      | @#{keyword.name}
+    p=keyword.description
+  
+  hr

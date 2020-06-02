@@ -119,6 +119,92 @@
      "type": "string",
      "description": "return tag desc"
     }
+   },
+   {
+    "kind": "method",
+    "visibility": "public",
+    "description": "no tag desc",
+    "keywords": [
+     {
+      "name": "name",
+      "description": "uu"
+     },
+     {
+      "name": "description",
+      "description": "desc tag desc"
+     },
+     {
+      "name": "see",
+      "description": "seeTag see tag desc"
+     },
+     {
+      "name": "public",
+      "description": "Sets the order"
+     },
+     {
+      "name": "version",
+      "description": "1.0.5 version tag desc"
+     },
+     {
+      "name": "since",
+      "description": "since tag desc"
+     }
+    ],
+    "name": "testA",
+    "params": [
+     {
+      "type": "Number",
+      "name": "a",
+      "description": "param tag desc"
+     }
+    ],
+    "return": {
+     "type": "string",
+     "description": "return tag desc"
+    }
+   },
+   {
+    "kind": "method",
+    "visibility": "public",
+    "description": "no tag desc",
+    "keywords": [
+     {
+      "name": "name",
+      "description": "uu"
+     },
+     {
+      "name": "description",
+      "description": "desc tag desc"
+     },
+     {
+      "name": "see",
+      "description": "seeTag see tag desc"
+     },
+     {
+      "name": "public",
+      "description": "Sets the order"
+     },
+     {
+      "name": "version",
+      "description": "1.0.5 version tag desc"
+     },
+     {
+      "name": "since",
+      "description": "since tag desc"
+     }
+    ],
+    "name": "testB",
+    "params": [
+     {
+      "type": "Number",
+      "name": "a",
+      "description": "param tag desc"
+     }
+    ],
+    "return": {
+     "type": "string",
+     "description": "return tag desc"
+    }
    }
   ]
  },

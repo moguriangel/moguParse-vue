@@ -99,6 +99,11 @@ a, a:hover, a:focus {
   color: #F6F6F2;
   padding: 10px;
 }
+a.dropdown-toggle {
+  display: block;
+  padding: 10px 8px;
+  background: #C2EDCE;
+}
 #sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
@@ -108,7 +113,7 @@ a, a:hover, a:focus {
   color: #388087;
   background: #F6F6F2;
 }
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebar ul li.active > a, li a[aria-expanded="true"] {
   color: #F6F6F2;
   background: #34777d;
 }
@@ -169,6 +174,9 @@ a.active{
 }
 .table-striped tbody tr:nth-of-type(odd) {
  background-color: #BADFE7;
+}
+.h4{
+    font-size: 24px
 }
 /* ---------------------------------------------------
   MEDIAQUERIES

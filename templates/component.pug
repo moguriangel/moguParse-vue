@@ -21,112 +21,33 @@ nav#sidebar
     .container.mt-4
       h3 Nome Componente
       // PROPS
-      section
-        .pt-4
-          h4 Props
-          include includes/propsTable.pug
+      if component.props.length
+        section
+          .pt-4
+            h4 Props
+            include includes/propsTable.pug
+      // DATA
+      if component.data.length
+        section
+          .pt-4
+            h4 Data
+            include includes/dataTable.pug
       // METHODS
-      section
-        .pt-4
-          h4 Methods
-          h5.pt-2.primary-text name
-          .py-2
-            p Mixin go to {mixin.name.html}
-          hr
-          h5.pt-2.primary-text method.name
-          .py-2
-            p
-              | Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu
-              | nisi hendrerit
-              | pellentesque at nec quam.
-          .py-2
-            .font-weight-bold description
-            p
-              | {method.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id enim
-              | eget ligula
-              | pulvinar facilisis. Donec ullamcorper convallis ex, in eleifend massa luctus quis. In
-              | sollicitudin quam
-              | eu nisi hendrerit pellentesque at nec quam.
-          .font-weight-bold params
-          div
-            span {params.name}
-            span.primary-text {params.type}
-            p {params.description}
-          hr
-          h5.pt-2.primary-text name
-          .font-weight-bold params
-          div
-            span {params.name}
-            span.primary-text {params.type}
-            p {params.description}
-          .font-weight-bold return
-          div
-            span.primary-text {return.type}
-            p {keywords.returns.description}
-          // here all other keywords
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
+      if component.methods.length
+        section
+          .pt-4
+            a.dropdown-toggle.text-capitalize.h4(href='#methodsCollapse', data-toggle='collapse', aria-expanded='false') methods
+            #methodsCollapse.collapse
+              - const type = component.methods
+                include includes/sections.pug
       // COMPUTED
-      section
-        .pt-4
-          h4 Computed
-          h5.pt-2.primary-text name
-          .py-2
-            p Mixin go to {mixin.name.html}
-          hr
-          h5.pt-2.primary-text method.name
-          .py-2
-            p
-              | Donec ullamcorper convallis ex, in eleifend massa luctus quis. In sollicitudin quam eu
-              | nisi hendrerit
-              | pellentesque at nec quam.
-          .py-2
-            .font-weight-bold description
-            p
-              | {method.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id enim
-              | eget ligula
-              | pulvinar facilisis. Donec ullamcorper convallis ex, in eleifend massa luctus quis. In
-              | sollicitudin quam
-              | eu nisi hendrerit pellentesque at nec quam.
-          .font-weight-bold params
-          div
-            span {params.name}
-            span.primary-text {params.type}
-            p {params.description}
-          hr
-          h5.pt-2.primary-text name
-          .font-weight-bold params
-          div
-            span {params.name}
-            span.primary-text {params.type}
-            p {params.description}
-          .font-weight-bold return
-          div
-            span.primary-text {return.type}
-            p {keywords.returns.description}
-          // here all other keywords
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
-          .font-weight-bold
-            | keywords.name
-          p {keywords.description}
+      if component.computed.length
+        section
+          .pt-4
+            a.dropdown-toggle.text-capitalize.h4(href='#computedCollapse', data-toggle='collapse', aria-expanded='false') computed
+            #computedCollapse.collapse
+              - const type = component.computed
+                include includes/sections.pug
 // jQuery CDN - Slim version (=without AJAX)
 script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
 // Bootstrap JS
