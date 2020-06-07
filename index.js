@@ -24,6 +24,7 @@ class ParseJsdoc {
   }
   async creatFolders() {
     const folderComponents = path.join(__dirname, 'vueJsdoc/components')
+    console.log(folderComponents)
     await fs.promises.mkdir(folderComponents, { recursive: true }, (err) => {
       if (err) throw err
     })

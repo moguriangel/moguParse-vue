@@ -1,5 +1,5 @@
 {
-  "name": "vue-jsdoc-html",
+  "name": "moguparse-vue-jsdoc-html",
   "version": "1.0.0",
   "description": "Get documentation for jsdoc written in vue components",
   "main": "src/index.js",
