@@ -36,12 +36,6 @@ class ParseJsdoc {
       if (err) throw err
     })
 
-    const style = require('./templates/style.js')
-    //generate css file
-    await fs.promises.writeFile('vueJsdoc/style.css', style.css, function (err) {
-      if (err) throw err
-    })
-
   }
 
   /**
@@ -118,6 +112,11 @@ class ParseJsdoc {
    */
   writeHtmlFiles() {
     this.creatFolders().then(() => {
+      const style = require('./templates/style.js')
+      //generate css file
+      fs.promises.writeFile('vueJsdoc/style.css', style.css, function (err) {
+        if (err) throw err
+      })
       this.getParsedFiles()
         .then(parsedComponents => {
 
