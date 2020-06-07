@@ -77,6 +77,12 @@ export default {
       return a + 2;
     }
   },
+  mounted() {
+    /**
+     * mounted
+     */
+    const mount = 33;
+  },
   computed: {
     /**
      * no tag desc
