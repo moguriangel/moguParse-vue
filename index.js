@@ -126,7 +126,7 @@ class ParseJsdoc {
             const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
             const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-            const folder = path.join(__dirname, 'vueJsdoc/components')
+            const folder = path.join(__dirname, '../../vueJsdoc/components')
 
             fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
               if (err) throw err
@@ -138,7 +138,7 @@ class ParseJsdoc {
             const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
             const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-            const folder = path.join(__dirname, 'vueJsdoc/mixin')
+            const folder = path.join(__dirname, '../../vueJsdoc/mixin')
 
             fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
               if (err) throw err
@@ -153,7 +153,7 @@ class ParseJsdoc {
             const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
 
 
-            const folder = path.join(__dirname, 'vueJsdoc/scripts')
+            const folder = path.join(__dirname, '../../vueJsdoc/scripts')
 
             fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
               if (err) throw err
