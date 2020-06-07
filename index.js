@@ -23,16 +23,16 @@ class ParseJsdoc {
     })
   }
   async creatFolders() {
-    const folderComponents = path.join(__dirname, 'vueJsdoc/components')
+    const folderComponents = path.join(__dirname, '../../vueJsdoc/components')
     console.log(folderComponents)
     await fs.promises.mkdir(folderComponents, { recursive: true }, (err) => {
       if (err) throw err
     })
-    const folderMixin = path.join(__dirname, 'vueJsdoc/mixin')
+    const folderMixin = path.join(__dirname, '../../vueJsdoc/mixin')
     await fs.promises.mkdir(folderMixin, { recursive: true }, (err) => {
       if (err) throw err
     })
-    const folderScripts = path.join(__dirname, 'vueJsdoc/scripts')
+    const folderScripts = path.join(__dirname, '../../vueJsdoc/scripts')
     await fs.promises.mkdir(folderScripts, { recursive: true }, (err) => {
       if (err) throw err
     })
