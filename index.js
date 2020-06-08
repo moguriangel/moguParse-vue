@@ -1,7 +1,8 @@
 const fs = require("fs")
 const path = require("path")
 
-const Glob = require("glob").Glob
+const glob = require("glob")
+const rimraf = require("rimraf");
 
 // parsers
 const vuedoc = require("@vuedoc/parser")
@@ -22,67 +23,66 @@ class ParseJsdoc {
       scripts: [],
     })
   }
+  async deleteFolder() {
+    const folderComponents = path.join(__dirname, '../../vueJsdoc')
+    await rimraf.sync(folderComponents)
+  }
   async creatFolders() {
+    await this.deleteFolder()
+
     const folderComponents = path.join(__dirname, '../../vueJsdoc/components')
-    console.log(folderComponents)
-    await fs.promises.mkdir(folderComponents, { recursive: true }, (err) => {
-      if (err) throw err
-    })
+
+    await fs.promises.mkdir(folderComponents, { recursive: true }).catch(console.log)
+
     const folderMixin = path.join(__dirname, '../../vueJsdoc/mixin')
     await fs.promises.mkdir(folderMixin, { recursive: true }, (err) => {
-      if (err) throw err
-    })
-    const folderScripts = path.join(__dirname, '../../vueJsdoc/scripts')
-    await fs.promises.mkdir(folderScripts, { recursive: true }, (err) => {
-      if (err) throw err
+      if (err) throw new Err('failed create folder', err)
     })
 
+    const folderScripts = path.join(__dirname, '../../vueJsdoc/scripts')
+    await fs.promises.mkdir(folderScripts, { recursive: true }, (err) => {
+      if (err) throw new Err('failed create folder', err)
+    })
   }
 
   /**
    * Retrive all directory from options 
    */
   async getPaths() {
-    const patternVueInclude = `${this.options.includeDirectories}/**/*.vue`
-    const patternJsInclude = `${this.options.includeDirectories}/**/*.js`
+    let vueDirs = []
+    let jsDirs = []
     const patternExclude = `${this.options.excludedDirectories}/*`
 
-    const vueFiles = await new Promise((resolve, reject) => {
-      new Glob(patternVueInclude, { ignore: patternExclude }, function (err, matches) {
-        if (err) {
-          reject(new Error('failed to get .vue files', err))
-        }
-        resolve(matches)
+    this.options.includeDirectories.map(dir => {
+      const patternInclude = `${dir}/**/*.vue`
 
+      const matches = glob.sync(patternInclude, {
+        ignore: patternExclude
       })
+      vueDirs.push(...matches)
     })
-    const scriptFiles = await new Promise((resolve, reject) => {
-      new Glob(patternJsInclude, { ignore: patternExclude }, function (err, matches) {
-        if (err) {
-          reject(new Error('failed to get .js files', err))
-        }
-        resolve(matches)
 
+    this.options.includeDirectories.map(dir => {
+      const patternInclude = `${dir}/**/*.js`
+
+      const matches = glob.sync(patternInclude, {
+        ignore: patternExclude
       })
+      jsDirs.push(...matches)
     })
-    return { vueFiles, scriptFiles }
-  }
-  /**
-   * Parse only vue files with vueParse
-   */
-  async getVueParsedFiles() {
-    // Parse all .vue files
 
-
+    return { vueDirs, jsDirs }
   }
+
   /**
    * Parse files and split vue mixin from plain js
    */
   async getParsedFiles() {
     const files = await this.getPaths()
+    console.log(files)
 
     let vueParsed = []
-    for (const file of files.vueFiles) {
+    for (const file of files.vueDirs) {
       const parseOne = await vuedoc.parse({ filename: file })
       _sidebarListFile.get(this).components.push({ name: parseOne.name, path: `components/${parseOne.name}.html` })
       vueParsed.push(parseOne)
@@ -90,7 +90,7 @@ class ParseJsdoc {
     let mixinParsed = []
     let scriptParsed = []
 
-    for (const file of files.scriptFiles) {
+    for (const file of files.jsDirs) {
 
       const getJsdocData = await jsdocApi.explain({ files: file })
       if (getJsdocData[0].kind === 'mixin') {
@@ -112,56 +112,57 @@ class ParseJsdoc {
    * Write html file based on pug templates
    */
   writeHtmlFiles() {
-    this.creatFolders().then(() => {
-      const style = require('./templates/style.js')
-      //generate css file
-      fs.promises.writeFile('vueJsdoc/style.css', style.css, function (err) {
-        if (err) throw err
-      })
-      this.getParsedFiles()
-        .then(parsedComponents => {
-
-          // Components
-          parsedComponents.vueParsed.forEach((component) => {
-            const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
-            const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
-
-            const folder = path.join(__dirname, '../../vueJsdoc/components')
-
-            fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
-              if (err) throw err
-            })
-          })
-          // Mixin
-          parsedComponents.mixinParsed.forEach((component) => {
-
-            const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
-            const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
-
-            const folder = path.join(__dirname, '../../vueJsdoc/mixin')
-
-            fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
-              if (err) throw err
-            })
-          })
-          // Scripts
-          parsedComponents.scriptParsed.forEach((script) => {
-            const basename = script[0].meta.filename
-            const baseNoExt = basename.replace(path.extname(basename), '')
-
-            const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/scripts.pug'))
-            const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
-
-
-            const folder = path.join(__dirname, '../../vueJsdoc/scripts')
-
-            fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
-              if (err) throw err
-            })
-          })
-
+    this.creatFolders()
+      .then(() => {
+        //generate css file
+        const style = require('./templates/style.js')
+        fs.promises.writeFile('vueJsdoc/style.css', style.css, function (err) {
+          if (err) throw err
         })
-    })
+        this.getParsedFiles()
+          .then(parsedComponents => {
+            // Components
+            parsedComponents.vueParsed.forEach((component) => {
+              const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
+              const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
+
+              const folder = path.join(__dirname, '../../vueJsdoc/components')
+
+              fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
+                if (err) throw new Err('failed write file', err)
+              })
+            })
+            // Mixin
+            parsedComponents.mixinParsed.forEach((component) => {
+
+              const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
+              const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
+
+              const folder = path.join(__dirname, '../../vueJsdoc/mixin')
+
+              fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
+                if (err) throw new Err('failed write file', err)
+              })
+            })
+            // Scripts
+            parsedComponents.scriptParsed.forEach((script) => {
+              const basename = script[0].meta.filename
+              const baseNoExt = basename.replace(path.extname(basename), '')
+
+              const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/scripts.pug'))
+              const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
+
+
+              const folder = path.join(__dirname, '../../vueJsdoc/scripts')
+
+              fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
+                if (err) throw new Err('failed write file', err)
+              })
+            })
+
+          })
+        console.log('Done')
+      })
 
   }
 

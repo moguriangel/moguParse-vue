@@ -1,5 +1,8 @@
 {
   "name": "giorgio",
-  "includeDirectories": "./src/components",
+  "includeDirectories": [
+    "./src/components",
+    "./src/mixin"
+  ],
   "excludedDirectories": "./src/components/SVGs"
 }
