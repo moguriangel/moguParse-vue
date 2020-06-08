@@ -1,5 +1,5 @@
 # vue-jsdoc-parse
-*it's not a library yet*
+
 
 Parse JSDOC for documentation export.
 
@@ -9,7 +9,7 @@ It detects if files .js are mixins
 
 ## Warnings
 
-- Always set `name`for a .vue file otherwise HTML will not displayed
+- Always set `name`for a .vue file otherwise the .html for that component, will not displayed
 - Give always an unique `name` for components
 - 
 
@@ -20,7 +20,7 @@ yarn add https://github.com/moguriangel/moguParse-vue-jsdoc.git
 ```
 or 
 ```
-npm install## https://github.com/moguriangel/moguParse-vue-jsdoc.git
+npm install https://github.com/moguriangel/moguParse-vue-jsdoc.git
 ```
 `yarn start`
 
