@@ -7,11 +7,12 @@ It generates html files
 
 It detects if files .js are mixins
 
-## Warnings
+## Caveat
 
 - Always set `name`for a .vue file otherwise the .html for that component, will not displayed
 - Give always an unique `name` for components
-- 
+- @vuedoc/parser not expose code inside vue hooks (mounted, updated..) 
+
 
 ## Install
 
@@ -58,3 +59,9 @@ or
 
 npm run moguparser
 ```
+## TODO
+
+- give possibility to add an array of folders to exclude
+- Include more checks(if user not provide config file, if folder in config file not exist..)
+- Get rid of all sync code
+- find a name for this package
