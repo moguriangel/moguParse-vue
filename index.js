@@ -25,22 +25,22 @@ class ParseJsdoc {
     })
   }
   async deleteFolder() {
-    const folderComponents = path.join(__dirname, '../../vueJsdoc')
+    const folderComponents = path.join(__dirname, '/vueJsdoc')
     await rimraf.sync(folderComponents)
   }
   async creatFolders() {
     await this.deleteFolder()
 
-    const folderComponents = path.join(__dirname, '../../vueJsdoc/components')
+    const folderComponents = path.join(__dirname, '/vueJsdoc/components')
 
     await fs.promises.mkdir(folderComponents, { recursive: true }).catch(console.log)
 
-    const folderMixin = path.join(__dirname, '../../vueJsdoc/mixin')
+    const folderMixin = path.join(__dirname, '/vueJsdoc/mixin')
     await fs.promises.mkdir(folderMixin, { recursive: true }, (err) => {
       if (err) throw new Err('failed create folder', err)
     })
 
-    const folderScripts = path.join(__dirname, '../../vueJsdoc/scripts')
+    const folderScripts = path.join(__dirname, '/vueJsdoc/scripts')
     await fs.promises.mkdir(folderScripts, { recursive: true }, (err) => {
       if (err) throw new Err('failed create folder', err)
     })
