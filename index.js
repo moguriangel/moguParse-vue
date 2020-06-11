@@ -1,5 +1,6 @@
 const fs = require("fs")
 const path = require("path")
+const appRoot = require('app-root-path');
 
 const glob = require("glob")
 const rimraf = require("rimraf");
@@ -114,6 +115,8 @@ class ParseJsdoc {
   writeHtmlFiles() {
     this.creatFolders()
       .then(() => {
+        console.log(appRoot)
+
         //generate css file
         const style = require('./templates/style.js')
         fs.promises.writeFile('../../vueJsdoc/style.css', style.css, function (err) {

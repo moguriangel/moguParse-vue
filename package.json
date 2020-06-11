@@ -10,7 +10,7 @@
     "access": "public"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "bin/index.js -c moguparser.json"
   },
   "keywords": [
     "moguparser",
@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@vuedoc/parser": "^2.2.1",
+    "app-root-path": "^3.0.0",
     "commander": "^5.1.0",
     "jsdoc-api": "^6.0.0",
     "jsdoc-parse": "^5.0.0",
