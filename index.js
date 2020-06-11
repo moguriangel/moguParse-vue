@@ -33,7 +33,7 @@ class ParseJsdoc {
 
     const folderComponents = path.join(__dirname, './vueJsdoc/components')
 
-    await fs.promises.mkdir(folderComponents, { recursive: true }).catch(console.log)
+    await fs.promises.mkdir('./vueJsdoc/components', { recursive: true }).catch(console.log)
 
     const folderMixin = path.join(__dirname, './vueJsdoc/mixin')
     await fs.promises.mkdir(folderMixin, { recursive: true }, (err) => {
