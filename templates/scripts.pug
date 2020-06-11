@@ -26,7 +26,7 @@ nav#sidebar
             | #{item.name}
           .py-2
             p Kind: #{item.kind}
-          if item.params.length
+          if item.params && item.params.length
             div @params
               each param in item.params
                 div

@@ -78,7 +78,6 @@ class ParseJsdoc {
    */
   async getParsedFiles() {
     const files = await this.getPaths()
-    console.log(files)
 
     let vueParsed = []
     for (const file of files.vueDirs) {
@@ -113,8 +112,6 @@ class ParseJsdoc {
   writeHtmlFiles() {
     this.creatFolders()
       .then(() => {
-        console.log('appRoot', appRoot.resolve('/node_modules'))
-        console.log('dirname', __dirname)
 
         //generate css file
         const style = require('./templates/style.js')
@@ -148,6 +145,7 @@ class ParseJsdoc {
             })
             // Scripts
             parsedComponents.scriptParsed.forEach((script) => {
+
               const basename = script[0].meta.filename
               const baseNoExt = basename.replace(path.extname(basename), '')
 
