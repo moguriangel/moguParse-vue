@@ -31,17 +31,15 @@ class ParseJsdoc {
   async creatFolders() {
     await this.deleteFolder()
 
-    const folderComponents = path.join(__dirname, './vueJsdoc/components')
 
     await fs.promises.mkdir('./vueJsdoc/components', { recursive: true }).catch(console.log)
 
-    const folderMixin = path.join(__dirname, './vueJsdoc/mixin')
-    await fs.promises.mkdir(folderMixin, { recursive: true }, (err) => {
+    await fs.promises.mkdir('./vueJsdoc/mixin', { recursive: true }, (err) => {
       if (err) throw new Err('failed create folder', err)
     })
 
     const folderScripts = path.join(__dirname, './vueJsdoc/scripts')
-    await fs.promises.mkdir(folderScripts, { recursive: true }, (err) => {
+    await fs.promises.mkdir('./vueJsdoc/scripts', { recursive: true }, (err) => {
       if (err) throw new Err('failed create folder', err)
     })
   }
@@ -130,7 +128,7 @@ class ParseJsdoc {
               const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
               const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-              const folder = path.join(__dirname, './vueJsdoc/components')
+              const folder = './vueJsdoc/components'
 
               fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
                 if (err) throw new Err('failed write file', err)
@@ -142,7 +140,7 @@ class ParseJsdoc {
               const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
               const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-              const folder = path.join(__dirname, './vueJsdoc/mixin')
+              const folder = './vueJsdoc/mixin'
 
               fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
                 if (err) throw new Err('failed write file', err)
@@ -157,7 +155,7 @@ class ParseJsdoc {
               const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
 
 
-              const folder = path.join(__dirname, './vueJsdoc/scripts')
+              const folder = './vueJsdoc/scripts'
 
               fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
                 if (err) throw new Err('failed write file', err)
