@@ -115,7 +115,8 @@ class ParseJsdoc {
   writeHtmlFiles() {
     this.creatFolders()
       .then(() => {
-        console.log(appRoot)
+        console.log('appRoot', appRoot.resolve('/node_modules'))
+        console.log('dirname', __dirname)
 
         //generate css file
         const style = require('./templates/style.js')
