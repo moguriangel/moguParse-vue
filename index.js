@@ -120,7 +120,7 @@ class ParseJsdoc {
 
         //generate css file
         const style = require('./templates/style.js')
-        fs.promises.writeFile('../../vueJsdoc/style.css', style.css, function (err) {
+        fs.promises.writeFile('./vueJsdoc/style.css', style.css, function (err) {
           if (err) throw err
         })
         this.getParsedFiles()
@@ -130,7 +130,7 @@ class ParseJsdoc {
               const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
               const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-              const folder = path.join(__dirname, '../../vueJsdoc/components')
+              const folder = path.join(__dirname, './vueJsdoc/components')
 
               fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
                 if (err) throw new Err('failed write file', err)
@@ -142,7 +142,7 @@ class ParseJsdoc {
               const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
               const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-              const folder = path.join(__dirname, '../../vueJsdoc/mixin')
+              const folder = path.join(__dirname, './vueJsdoc/mixin')
 
               fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
                 if (err) throw new Err('failed write file', err)
@@ -157,7 +157,7 @@ class ParseJsdoc {
               const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
 
 
-              const folder = path.join(__dirname, '../../vueJsdoc/scripts')
+              const folder = path.join(__dirname, './vueJsdoc/scripts')
 
               fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
                 if (err) throw new Err('failed write file', err)
