@@ -116,7 +116,7 @@ class ParseJsdoc {
       .then(() => {
         //generate css file
         const style = require('./templates/style.js')
-        fs.promises.writeFile('vueJsdoc/style.css', style.css, function (err) {
+        fs.promises.writeFile('../../vueJsdoc/style.css', style.css, function (err) {
           if (err) throw err
         })
         this.getParsedFiles()
