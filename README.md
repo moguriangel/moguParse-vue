@@ -44,7 +44,7 @@ Then add a script in your package.json
 
 ```
 "scripts" : {
-  "moguparser": "moguparser -c config.json"
+  "moguparse": "moguparse -c config.json"
 }
 ```
 
@@ -53,11 +53,11 @@ Then add a script in your package.json
 In console lunch the script
 
 ```
-yarn moguparser
+yarn moguparse
 
 or
 
-npm run moguparser
+npm run moguparse
 ```
 
 ## Start the example in lib

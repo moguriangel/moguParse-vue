@@ -4,7 +4,7 @@
   "description": "Get documentation for jsdoc written in vue components",
   "main": "src/index.js",
   "bin": {
-    "moguparser": "bin/index.js"
+    "moguparse": "bin/index.js"
   },
   "publishConfig": {
     "access": "public"

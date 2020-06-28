@@ -18,6 +18,6 @@ const configFile = fs.readFile(program.config, 'utf8', (err) => {
 
 configFile
   .then(res => {
-    const moguparser = new ParseJsdoc(JSON.parse(res))
-    moguparser.writeHtmlFiles()
+    const moguparse = new ParseJsdoc(JSON.parse(res))
+    moguparse.writeHtmlFiles()
   })
