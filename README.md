@@ -1,4 +1,4 @@
-# vue-jsdoc-parse
+# MoguParse for Vue
 
 
 Parse JSDOC for documentation export.
@@ -17,11 +17,11 @@ It detects if files .js are mixins
 ## Install
 
 ```
-yarn add https://github.com/moguriangel/moguParse-vue-jsdoc.git
+yarn add https://github.com/moguriangel/moguParse-vue.git
 ```
 or 
 ```
-npm install https://github.com/moguriangel/moguParse-vue-jsdoc.git
+npm install https://github.com/moguriangel/moguParse-vue.git
 ```
 `yarn start`
 
