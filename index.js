@@ -99,13 +99,12 @@ class ParseJsdoc {
 
     for (const file of files.jsDirs) {
       const getJsdocData = await jsdocApi.explain({ files: file })
-      const parseOne = await vuedoc.parse({ filename: file })
-
       /**
        * We parse all .js files with jsdocApi
        * If property kind === mixin we can parse these file with vuedoc
        */
-      if (getJsdocData[0].kind === 'mixin' || parseOne.keywords.name === 'mixin') {
+      if (getJsdocData[0].kind === 'mixin') {
+        const parseOne = await vuedoc.parse({ filename: file })
 
         /**
          * Push mixins path into our sidebar
@@ -124,7 +123,6 @@ class ParseJsdoc {
         const baseNoExt = basename.replace(path.extname(file), '')
 
         const parsePlainJs = jsdocParse(getJsdocData)
-
         /** 
          * if parsed javascript has some jsdoc
          */
