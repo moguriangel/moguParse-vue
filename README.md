@@ -11,8 +11,25 @@ It detects if files .js are mixins
 
 - Always set `name`for a .vue file otherwise the .html for that component, will not displayed
 - Give always an unique `name` for components
-- @vuedoc/parser not expose code inside vue hooks (mounted, updated..) 
+- @vuedoc/parser not expose code inside vue hooks (mounted, updated..)
+- for better detect a mixin add `mixin` tag AFTER imports in your mixin file
+``` 
+// myMixin.js  
+import isEmpty from 'lodash/isEmpty'
+import somethingElse form 'Something'
+...
 
+/**
+ * @mixin
+ */
+
+ export default {
+   props: { ... }
+   methods: { ...}
+   computed: {...}
+ }
+ ```  
+- Always export default in mixins. Do not export named mixin because @vuedoc/parser cannot parse it 
 
 ## Install
 

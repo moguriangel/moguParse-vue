@@ -1,5 +1,4 @@
 {
-  "name": "giorgio",
   "includeDirectories": [
     "./example/components",
     "./example/mixin"
