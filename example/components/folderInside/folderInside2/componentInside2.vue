@@ -1,28 +1,25 @@
 <template>
-  <div>Ciao</div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "poveroComponente",
+  name: "componentInside2",
   props: {
     /**
-     * Defined in the component.
+     * prop foo in the componentInside2.
      */
-    foo: {
+    bar: {
       type: String
     }
   },
   methods: {
     /**
-     * test comp2
-     * @public
-     * @see goggle
+     * no tag -- method1 desc
      * @param {Number} a first number
      */
-    test1(a) {
+    method1(a) {
       return a + 2;
     }
   }
 };
-</script>

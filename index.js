@@ -25,7 +25,7 @@ class ParseJsdoc {
     })
   }
   async deleteFolder() {
-    const folderComponents = path.join(__dirname, './vueJsdoc')
+    const folderComponents = './vueJsdoc'
     await rimraf.sync(folderComponents)
   }
   async creatFolders() {
@@ -38,7 +38,6 @@ class ParseJsdoc {
       if (err) throw new Err('failed create folder', err)
     })
 
-    const folderScripts = path.join(__dirname, './vueJsdoc/scripts')
     await fs.promises.mkdir('./vueJsdoc/scripts', { recursive: true }, (err) => {
       if (err) throw new Err('failed create folder', err)
     })
@@ -109,64 +108,56 @@ class ParseJsdoc {
   /**
    * Write html file based on pug templates
    */
-  writeHtmlFiles() {
-    this.creatFolders()
-      .then(() => {
+  async writeHtmlFiles() {
+    await this.creatFolders()
 
-        //generate css file
-        const style = require('./templates/style.js')
-        fs.promises.writeFile('./vueJsdoc/style.css', style.css, function (err) {
-          if (err) throw err
-        })
-        this.getParsedFiles()
-          .then(parsedComponents => {
-            // Components
-            parsedComponents.vueParsed.forEach((component) => {
-              const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
-              const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
+    //generate css file
+    const style = require('./templates/style.js')
+    fs.promises.writeFile('./vueJsdoc/style.css', style.css, function (err) {
+      if (err) throw err
+    })
+    this.getParsedFiles()
+      .then(parsedComponents => {
+        // Components
+        parsedComponents.vueParsed.forEach((component) => {
+          const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
+          const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
 
-              const folder = './vueJsdoc/components'
+          const folder = './vueJsdoc/components'
 
-              fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
-                if (err) throw new Err('failed write file', err)
-              })
-            })
-            // Mixin
-            parsedComponents.mixinParsed.forEach((component) => {
-
-              const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
-              const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
-
-              const folder = './vueJsdoc/mixin'
-
-              fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
-                if (err) throw new Err('failed write file', err)
-              })
-            })
-            // Scripts
-            parsedComponents.scriptParsed.forEach((script) => {
-
-              const basename = script[0].meta.filename
-              const baseNoExt = basename.replace(path.extname(basename), '')
-
-              const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/scripts.pug'))
-              const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
-
-
-              const folder = './vueJsdoc/scripts'
-
-              fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
-                if (err) throw new Err('failed write file', err)
-              })
-            })
-
+          fs.promises.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
+            if (err) throw new Err('failed write file', err)
           })
-        console.log('Done')
+        })
+        // Mixin
+        parsedComponents.mixinParsed.forEach((component) => {
+
+          const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))
+          const pugHtml = pugCompiledFunction({ component, sidebarListFile: _sidebarListFile.get(this) })
+
+          const folder = './vueJsdoc/mixin'
+
+          fs.writeFile(`${folder}/${component.name}.html`, pugHtml, function (err) {
+            if (err) throw new Err('failed write file', err)
+          })
+        })
+        // Scripts
+        parsedComponents.scriptParsed.forEach((script) => {
+          const basename = script[0].meta.filename
+          const baseNoExt = basename.replace(path.extname(basename), '')
+
+          const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/scripts.pug'))
+          const pugHtml = pugCompiledFunction({ script, sidebarListFile: _sidebarListFile.get(this), baseNoExt })
+
+
+          const folder = './vueJsdoc/scripts'
+
+          fs.writeFile(`${folder}/${baseNoExt}.html`, pugHtml, function (err) {
+            if (err) throw new Err('failed write file', err)
+          })
+        })
       })
-
   }
-
-
 }
 module.exports = {
   ParseJsdoc: ParseJsdoc

@@ -1,0 +1,8 @@
+{
+  "name": "giorgio",
+  "includeDirectories": [
+    "./example/components",
+    "./example/mixin"
+  ],
+  "excludedDirectories": "./example/components/folderToExclude"
+}

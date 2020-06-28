@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  name: "",
+  name: "componentInside",
   props: {
     /**
-     * Defined in the component.
+     * prop foo in the componentInside.
      */
     foo: {
       type: String
@@ -15,12 +15,10 @@ export default {
   },
   methods: {
     /**
-     * test comp2
-     * @public
-     * @see goggle
+     * no tag -- method1 desc
      * @param {Number} a first number
      */
-    test1(a) {
+    method1(a) {
       return a + 2;
     }
   }

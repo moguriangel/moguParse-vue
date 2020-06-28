@@ -1,14 +1,13 @@
 /** 
  * @mixin
- * @public
- * @mioTag cicci
+ * @customTag A custom tag
  */
 export default {
   props: {
     /**
      * Defined in the mixin.
      */
-    barr: {
+    bar: {
       type: Number
     }
   },
@@ -16,14 +15,10 @@ export default {
     /**
      * Mixin
      * @description Mixin
-     * @see qui
-     * @public Sets the order
-     * @version 1.0.5
-     * @since Version 1.0.1
-     * @param {Number} a Key to order
-     * @returns {string} Test
+     * @param {Number} a First number
+     * @returns {string} Sum param + 2
      */
-    testa(a) {
+    method1(a) {
       return a + 2;
     }
   }

@@ -10,7 +10,7 @@
     "access": "public"
   },
   "scripts": {
-    "start": "bin/index.js -c moguparser.json"
+    "start": "bin/index.js -c example/moguparser.json"
   },
   "keywords": [
     "moguparser",
