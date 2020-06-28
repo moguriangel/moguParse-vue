@@ -59,6 +59,21 @@ or
 
 npm run moguparser
 ```
+
+## Start the example in lib
+Download this project
+
+Start install dependencies
+```
+yarn
+```
+
+Then start to parse folders in example
+```
+yarn start
+``` 
+Now you should found `VueJsdoc` folder inside root filled with all html files
+
 ## TODO
 
 - give possibility to add an array of folders to exclude

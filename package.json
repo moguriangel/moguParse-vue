@@ -1,5 +1,5 @@
 {
-  "name": "moguparse-vue-jsdoc-html",
+  "name": "moguparse-vue",
   "version": "1.0.0",
   "description": "Get documentation for jsdoc written in vue components",
   "main": "src/index.js",
@@ -10,11 +10,13 @@
     "access": "public"
   },
   "scripts": {
-    "start": "bin/index.js -c example/moguparser.json"
+    "start": "bin/index.js -c example/moguparse.json"
   },
   "keywords": [
-    "moguparser",
-    "jsdoc"
+    "moguparse",
+    "jsdoc",
+    "vue",
+    "parse"
   ],
   "author": "Daniela Buzziol",
   "license": "MIT",
