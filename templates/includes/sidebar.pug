@@ -8,6 +8,6 @@ ul.list-unstyled.components
       ul.collapse.list-unstyled(id=`${key}Submenu` class=someActive ? 'show' : '')
         each link in type
           li.ml-2
-            a(href='../' + link.path class=link.name === fileName ? 'active' : '')
+            a(href= absolutePath + link.path class=link.name === fileName ? 'active' : '')
               | #{link.name}
         

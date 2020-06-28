@@ -82,6 +82,7 @@ a, a:hover, a:focus {
   position: fixed;
   height: 100vh;
   z-index: 100;
+  overflow: scroll
 }
 #sidebar.active {
   margin-left: -290px;

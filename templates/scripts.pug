@@ -14,10 +14,13 @@ head
 nav#sidebar
   button#sidebarCollapse.navbar-btn(type='button')
     i#icon.fa.fa-chevron-left
-  h3.my-4.pl-2 VUE JSDOC PARSE
+  h3.my-4.pl-2
+    a(href= '../index.html')
+      |PARSED FILES
   -var fileName = baseNoExt
+  -var absolutePath = '../'
     include includes/sidebar.pug
-.wrappers
+.wrapper
   #content.primary-dark-text
     .container.mt-4
       h3=script[0].meta.filename
@@ -29,7 +32,7 @@ nav#sidebar
           if item.description && item.params.length
           div @description
             p=item.description 
-            
+
           if item.params && item.params.length
             div @params
               each param in item.params

@@ -116,8 +116,18 @@ class ParseJsdoc {
     fs.promises.writeFile('./vueJsdoc/style.css', style.css, function (err) {
       if (err) throw err
     })
+
     this.getParsedFiles()
       .then(parsedComponents => {
+
+        // generate index.html
+        const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/index.pug'))
+        const pugHtml = pugCompiledFunction({ sidebarListFile: _sidebarListFile.get(this) })
+
+        fs.promises.writeFile('./vueJsdoc/index.html', pugHtml, function (err) {
+          if (err) throw err
+        })
+
         // Components
         parsedComponents.vueParsed.forEach((component) => {
           const pugCompiledFunction = pug.compileFile(path.join(__dirname, './templates/component.pug'))

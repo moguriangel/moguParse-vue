@@ -64,4 +64,3 @@ npm run moguparser
 - give possibility to add an array of folders to exclude
 - Include more checks(if user not provide config file, if folder in config file not exist..)
 - Get rid of all sync code
-- find a name for this package

@@ -3,11 +3,11 @@ head
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='IE=edge')
-  title comp.name
+  title MoguParse Vue
   // Bootstrap CSS CDN
   link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
   // Our Custom CSS
-  link(rel='stylesheet', href='../style.css')
+  link(rel='stylesheet', href='style.css')
   // Font Awesome JS
   script(defer='', src='https://use.fontawesome.com/releases/v5.0.13/js/solid.js', integrity='sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ', crossorigin='anonymous')
   script(defer='', src='https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js', integrity='sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY', crossorigin='anonymous')
@@ -15,43 +15,24 @@ nav#sidebar
   button#sidebarCollapse.navbar-btn(type='button')
     i#icon.fa.fa-chevron-left
   h3.my-4.pl-2
-    a(href= '../index.html')
+    a(href= '#')
       |PARSED FILES
-  -var fileName = component.name
-  -var absolutePath = '../'
+  -var fileName = baseNoExt
+  -var absolutePath = ''
     include includes/sidebar.pug
 .wrapper
   #content.primary-dark-text
     .container.mt-4
-      h3 Component name
-      // PROPS
-      if component.props.length
-        section
-          .pt-4
-            h4 Props
-            include includes/propsTable.pug
-      // DATA
-      if component.data.length
-        section
-          .pt-4
-            h4 Data
-            include includes/dataTable.pug
-      // METHODS
-      if component.methods.length
-        section
-          .pt-4
-            a.dropdown-toggle.section-toggle.text-capitalize.h4(href='#methodsCollapse', data-toggle='collapse', aria-expanded='false') methods
-            #methodsCollapse.collapse
-              - const type = component.methods
-                include includes/sections.pug
-      // COMPUTED
-      if component.computed.length
-        section
-          .pt-4
-            a.dropdown-toggle.section-toggle.text-capitalize.h4(href='#computedCollapse', data-toggle='collapse', aria-expanded='false') computed
-            #computedCollapse.collapse
-              - const type = component.computed
-                include includes/sections.pug
+      .jumbotron
+        h1.display-4 Welcome to MoguParse for Vue.js
+        p.lead
+          | A new way to parse and display JSDocs
+        hr.my-4
+        p
+          | For bug, issue, and Doc visit GutHub page
+        a.btn.btn-lg(href='https://github.com/moguriangel/moguParse-vue-jsdoc' role='button' class="primary-bg white-text") GitHub
+
+      
 // jQuery CDN - Slim version (=without AJAX)
 script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
 // Bootstrap JS
