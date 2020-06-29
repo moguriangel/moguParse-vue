@@ -12,11 +12,11 @@
     "parse",
     "documentation jsdoc"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "bin": {
     "moguparse": "bin/index.js"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "scripts": {
     "start": "bin/index.js -c example/moguparse.json"
