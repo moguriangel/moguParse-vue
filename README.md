@@ -44,16 +44,16 @@ npm install https://github.com/moguriangel/moguParse-vue.git
 
 ## Configuration file
 
-For now package needs a configuration JSON file in the root folder, that must has included directories (Array) and excluded directories (String)
+This package needs a configuration JSON file, that must includes `includeDirectories` key (Array) and an optional `excludedDirectories` key (String)
 
 ```
-// config.json  or whatever name you want
+// moguparseConfig.json  or whatever name you want
 {
-  "includeDirectories": [
+  "includeDirectories": [ // Required
     "./src/components",
     "./src/mixin"
   ],
-  "excludedDirectories": "./src/components/SVGs"
+  "excludedDirectories": "./src/components/SVGs" // Optional
 }
 ```
 
@@ -61,7 +61,7 @@ Then add a script in your package.json
 
 ```
 "scripts" : {
-  "moguparse": "moguparse -c config.json"
+  "moguparse": "moguparse -c moguparseConfig.json"
 }
 ```
 
@@ -96,3 +96,5 @@ Now you should found `VueJsdoc` folder inside root filled with all html files
 - give possibility to add an array of folders to exclude
 - Include more checks(if user not provide config file, if folder in config file not exist..)
 - Get rid of all sync code
+- Set default folders if no config will provide
+- Write tests
